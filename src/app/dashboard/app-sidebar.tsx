@@ -15,7 +15,14 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+type Navigation = {
+  name: string;
+  href?: string;
+  icon: React.ElementType;
+  current?: boolean;
+  children?: Navigation[];
+};
+
 const data = {
   navMain: [
     {
@@ -24,7 +31,7 @@ const data = {
       items: [
         {
           title: "Speed run",
-          url: "/tools/speed-run",
+          url: "/dashboard/tools/speed-run",
         },
       ],
     },
@@ -37,28 +44,16 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Components",
-          url: "#",
+          title: "Esspresso",
+          url: "/recipes/espresso",
         },
         {
-          title: "File Conventions",
-          url: "#",
+          title: "Cortado",
+          url: "/recipes/cortado",
         },
         {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
+          title: "Latte",
+          url: "/recipes/latte",
         },
       ],
     },
