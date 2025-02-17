@@ -1,0 +1,21 @@
+Hi I am using nextjs, typescript, tailwindcss, shadcdnui, mdx
+for an internal tools app for training barista's in a specialty coffee shop
+called ru coffee bar.
+
+But please make the default values, the normal values for a specialty coffee shop in America.
+
+Help me create a mdx file for:
+
+Steps on how to prepare cortado.
+
+Please keep in mind the ratios.
+
+I want all the inputs to be toggleable and to automatically update related inputs via a porportion or mathematical formula,
+whatever is standard in industry,
+
+I want to know how to inputs change the output of cotado drinks.
+
+I think inputs should be amount of espresso and milk, to output of drink
+
+Any information im missing please include it.
+Please also talk about how to do standard cortado art if it applies.

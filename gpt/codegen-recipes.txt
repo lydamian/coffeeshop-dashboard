@@ -1,0 +1,320 @@
+assuming im in my recipes folder using app router in nextjs
+
+i need you to create me a bash script to codegen a directory
+content.mdx and page.tsx page for each drink in this list
+
+[
+  {
+    "name": "Espresso",
+    "key": "espresso",
+    "description": "A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans",
+    "ingredients": "Finely ground coffee beans, hot water",
+    "tags": ["strong", "intense", "quick", "classic"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Cortado",
+    "key": "cortado",
+    "description": "Equal parts espresso and steamed milk, creating a balanced and smooth coffee experience",
+    "ingredients": "Espresso, steamed milk",
+    "tags": ["balanced", "smooth", "Spanish-inspired"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Cappuccino",
+    "key": "cappuccino",
+    "description": "Equal parts espresso, steamed milk, and milk foam, often dusted with cocoa powder",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["frothy", "Italian", "breakfast"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Latte",
+    "key": "latte",
+    "description": "Espresso with steamed milk and a small layer of milk foam on top",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["creamy", "mild", "popular"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Americano",
+    "key": "americano",
+    "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
+    "ingredients": "Espresso, hot water",
+    "tags": ["diluted", "smooth", "simple"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Lychee Espresso Tonic",
+    "key": "lychee-espresso-tonic",
+    "description": "A refreshing blend of espresso, tonic water, and lychee syrup over ice",
+    "ingredients": "Espresso, tonic water, lychee syrup, ice",
+    "tags": ["refreshing", "unique", "summer"],
+    "category": "Signature Drinks"
+  },
+  {
+    "name": "Vanilla Latte",
+    "key": "vanilla-latte",
+    "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
+    "ingredients": "Espresso, steamed milk, vanilla syrup",
+    "tags": ["sweet", "aromatic", "popular"],
+    "category": "Signature Drinks"
+  },
+  {
+    "name": "Black Sugar Latte",
+    "key": "black-sugar-latte",
+    "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
+    "ingredients": "Espresso, steamed milk, black sugar syrup",
+    "tags": ["sweet", "rich", "caramel"],
+    "category": "Signature Drinks"
+  },
+  {
+    "name": "Tie Guan Yin Fruit Tea",
+    "key": "tie-guan-yin-fruit-tea",
+    "description": "Oolong tea infused with mixed fruits for a refreshing and fragrant drink",
+    "ingredients": "Tie Guan Yin tea, mixed fruits, ice",
+    "tags": ["refreshing", "fruity", "iced"],
+    "category": "Non Coffee"
+  },
+  {
+    "name": "Black Sugar Hojicha Latte",
+    "key": "black-sugar-hojicha-latte",
+    "description": "Roasted green tea latte sweetened with black sugar syrup",
+    "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
+    "tags": ["roasted", "sweet", "Japanese-inspired"],
+    "category": "Non Coffee"
+  },
+  {
+    "name": "Berry Fizz",
+    "key": "berry-fizz",
+    "description": "A sparkling mixed berry drink, perfect for a refreshing non-caffeinated option",
+    "ingredients": "Mixed berry syrup, soda water, ice",
+    "tags": ["refreshing", "fruity", "sparkling"],
+    "category": "Non Coffee"
+  },
+  {
+    "name": "Matcha Latte",
+    "key": "matcha-latte",
+    "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
+    "ingredients": "Matcha powder, steamed milk",
+    "tags": ["earthy", "Japanese", "antioxidant-rich"],
+    "category": "Matcha"
+  },
+  {
+    "name": "Zesty Matcha Latte",
+    "key": "zesty-matcha-latte",
+    "description": "Matcha latte with a hint of citrus zest for a bright, refreshing twist",
+    "ingredients": "Matcha powder, steamed milk, citrus zest",
+    "tags": ["zesty", "refreshing", "unique"],
+    "category": "Matcha"
+  },
+  {
+    "name": "Jasmine Matcha Latte",
+    "key": "jasmine-matcha-latte",
+    "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
+    "ingredients": "Matcha powder, jasmine tea, steamed milk",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Matcha"
+  },
+  {
+    "name": "Tie Guan Yin",
+    "key": "tie-guan-yin",
+    "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
+    "ingredients": "Tie Guan Yin tea leaves, hot water",
+    "tags": ["oolong", "floral", "premium"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "Jasmine Jixuan",
+    "key": "jasmine-jixuan",
+    "description": "A delicate green tea scented with jasmine flowers",
+    "ingredients": "Jasmine Jixuan tea leaves, hot water",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "High Mountain Oolong Tea",
+    "key": "high-mountain-oolong-tea",
+    "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
+    "ingredients": "High mountain oolong tea leaves, hot water",
+    "tags": ["floral", "light", "premium"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "Banana Milk",
+    "key": "banana-milk",
+    "description": "A sweet and creamy banana-flavored milk drink, perfect for kids",
+    "ingredients": "Milk, banana syrup",
+    "tags": ["sweet", "creamy", "kid-friendly"],
+    "category": "For kids"
+  },
+  {
+    "name": "Strawberry Milk",
+    "key": "strawberry-milk",
+    "description": "A pink, fruity milk drink that's a favorite among children",
+    "ingredients": "Milk, strawberry syrup",
+    "tags": ["sweet", "fruity", "kid-friendly"],
+    "category": "For kids"
+  },
+  {
+    "name": "Milk",
+    "key": "milk",
+    "description": "Pure, cold milk served as a refreshing and nutritious drink",
+    "ingredients": "Milk",
+    "tags": ["simple", "nutritious", "kid-friendly"],
+    "category": "For kids"
+  }
+]
+
+so at the end of the codegen i want
+to see recipes/espresso/content.mdx and recipes/espresso/page.tsx
+and the content should match this pattern
+
+'use client';
+
+import Content from '@/app/recipes/cortado/content.mdx';
+
+// content.mdx
+
+import { useState, useEffect } from 'react'
+import { Input } from "@/components/ui/input"
+import { Slider } from "@/components/ui/slider"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+# How to Prepare a Cortado at RU Coffee Bar
+
+A cortado is a balanced espresso drink originating from Spain, consisting of equal parts espresso and steamed milk. The name "cortado" means "cut" in Spanish, referring to the milk cutting through the espresso.
+
+## Cortado Calculator
+
+export const CortadoCalculator = () => {
+  const [espressoGrams, setEspressoGrams] = useState(30);
+  const [milkGrams, setMilkGrams] = useState(30);
+  const [espressoShots, setEspressoShots] = useState(2);
+  const [totalVolume, setTotalVolume] = useState(60);
+
+  useEffect(() => {
+    setTotalVolume(espressoGrams + milkGrams);
+  }, [espressoGrams, milkGrams]);
+
+  const updateValues = (type, value) => {
+    switch(type) {
+      case 'espresso':
+        setEspressoGrams(value);
+        setMilkGrams(value); // Maintain 1:1 ratio
+        setEspressoShots(Math.round(value / 15)); // Assume 15g per shot
+        break;
+      case 'milk':
+        setMilkGrams(value);
+        setEspressoGrams(value); // Maintain 1:1 ratio
+        setEspressoShots(Math.round(value / 15)); // Assume 15g per shot
+        break;
+      case 'shots':
+        const newEspressoGrams = value * 15;
+        setEspressoShots(value);
+        setEspressoGrams(newEspressoGrams);
+        setMilkGrams(newEspressoGrams); // Maintain 1:1 ratio
+        break;
+    }
+  }
+
+  return (
+    <Card className="my-4">
+      <CardHeader>
+        <CardTitle>Cortado Recipe Calculator</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="espresso-input">Espresso (g):</label>
+            <Input 
+              id="espresso-input"
+              type="number" 
+              value={espressoGrams} 
+              onChange={(e) => updateValues('espresso', Number(e.target.value))}
+            />
+          </div>
+          <div>
+            <label htmlFor="milk-input">Milk (g):</label>
+            <Input 
+              id="milk-input"
+              type="number" 
+              value={milkGrams} 
+              onChange={(e) => updateValues('milk', Number(e.target.value))}
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <label htmlFor="shots-slider">Espresso Shots: {espressoShots}</label>
+          <Slider
+            id="shots-slider"
+            min={1}
+            max={4}
+            step={1}
+            value={[espressoShots]}
+            onValueChange={(value) => updateValues('shots', value[0])}
+          />
+        </div>
+        <p className="mt-4">Total Volume: {totalVolume}ml</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+<CortadoCalculator />
+
+## Ingredients and Equipment
+
+- Freshly roasted espresso beans
+- Whole milk
+- Espresso machine
+- Milk steaming pitcher
+- Small cup (typically 4-5 oz / 120-150 ml)
+
+## Steps to Prepare a Cortado
+
+1. **Prepare the espresso**
+   - Grind the coffee beans (typically 18-20g for a double shot)
+   - Tamp and extract a double shot of espresso (about 30ml)
+
+2. **Steam the milk**
+   - Pour cold milk into a steaming pitcher (about 30-40ml)
+   - Steam the milk to about 140-150°F (60-65°C)
+   - Aim for a velvety microfoam texture, less airy than for a cappuccino
+
+3. **Combine and serve**
+   - Pour the steamed milk over the espresso
+   - Aim for a 1:1 ratio of espresso to milk
+   - Serve immediately in a small glass or ceramic cup
+
+## Cortado Latte Art
+
+While cortados are often served without elaborate latte art due to their small size, you can still create simple designs:
+
+1. Start with the cup at a slight angle
+2. Pour the milk steadily into the center of the espresso
+3. As the cup fills, bring the pitcher closer to the surface
+4. Make small, gentle movements to create a simple heart or dot pattern
+5. Finish by cutting through the design with a thin stream of milk
+
+## Tips for the Perfect Cortado
+
+1. **Espresso quality**: Use freshly roasted beans and dial in your grind for optimal extraction
+2. **Milk texture**: Aim for silky, velvety milk with minimal foam
+3. **Temperature**: Serve immediately for the best temperature and flavor balance
+4. **Cup size**: Use the appropriate small cup to maintain the right proportions
+5. **Consistency**: Practice to maintain a consistent ratio and texture in every cortado
+
+Remember, a cortado is about balance. The equal parts of espresso and milk should complement each other, allowing both the coffee flavors and the creamy texture of the milk to shine through.
+
+</Card>
+
+
+// page.tsx
+export default function EspressoPage() {
+  return (
+    <div className="prose my-12 mx-auto">
+      <Content />
+    </div>
+  );
+}
