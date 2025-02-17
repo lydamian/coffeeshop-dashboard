@@ -1,0 +1,85 @@
+import { useState } from 'react';
+
+# Making a Custom Shot of Espresso
+
+## Equipment Needed:
+- Espresso machine
+- Portafilter
+- Espresso grinder
+- Scale
+- Tamper
+- Clean cloth
+
+## Ingredients:
+- Freshly roasted espresso beans
+
+## Custom Recipe Calculator
+
+export const EspressoCalculator = () => {
+  const [outputGrams, setOutputGrams] = useState(36);
+  const inputGrams = Math.round(outputGrams / 2);
+  const extractionTime = Math.round(outputGrams * 0.75);
+
+  return (
+    <div className="my-4 p-4 border rounded-md bg-gray-100">
+      <label className="block mb-2">
+        Desired espresso output (grams):
+        <input 
+          type="number" 
+          value={outputGrams} 
+          onChange={(e) => setOutputGrams(Number(e.target.value))}
+          className="ml-2 p-1 border rounded"
+        />
+      </label>
+      <p>Input coffee: <strong>{inputGrams} grams</strong></p>
+      <p>Target extraction time: <strong>{extractionTime} seconds</strong></p>
+    </div>
+  );
+};
+
+<EspressoCalculator />
+
+## Steps:
+
+1. **Warm up the machine:**
+   - Turn on your espresso machine and allow it to heat up (usually 15-30 minutes).
+   - Run water through the group head to ensure it's hot.
+
+2. **Prepare your portafilter:**
+   - Ensure your portafilter is clean and dry.
+   - Warm it by locking it into the group head briefly.
+
+3. **Grind the coffee:**
+   - Grind the amount of coffee beans calculated above.
+   - Adjust grind size to be fine, similar to table salt.
+
+4. **Dose the coffee:**
+   - Place the portafilter on a scale.
+   - Add the ground coffee to the portafilter.
+   - Ensure even distribution in the basket.
+
+5. **Tamp the coffee:**
+   - Apply even pressure (about 30 lbs) with the tamper.
+   - Aim for a level, compressed puck of coffee.
+
+6. **Insert and brew:**
+   - Lock the portafilter into the group head.
+   - Start the shot immediately.
+   - Place your cup under the spouts.
+
+7. **Monitor the extraction:**
+   - Watch the flow of espresso.
+   - Aim for the extraction time calculated above.
+   - Look for a honey-like consistency.
+
+8. **Stop the shot:**
+   - Stop the extraction when you've reached your desired output weight.
+
+9. **Serve and enjoy:**
+   - Serve immediately for best flavor and temperature.
+   - Clean your equipment for the next use.
+
+## Tips:
+- Adjust grind size finer if the shot runs too fast, coarser if too slow.
+- Consistently use the same tamping pressure for reproducible results.
+- Always use freshly roasted beans for the best flavor.
