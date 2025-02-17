@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-// Assume this is imported from a separate file
+import { CheckCircle } from 'lucide-react';
 import drinksData from '@/data/drinks.json';
 
 interface Drink {
@@ -26,7 +25,7 @@ interface SpeedrunState {
   timer: number;
   numDrinks: number;
   selectedDrinks: Drink[];
-  currentDrinkIndex: number;
+  completedDrinks: boolean[];
   isRunning: boolean;
   lastCheckTime: number;
   results: DrinkResult[];
@@ -46,7 +45,7 @@ const DrinkSpeedrun: React.FC = () => {
       timer: 0,
       numDrinks: 5,
       selectedDrinks: [],
-      currentDrinkIndex: 0,
+      completedDrinks: [],
       isRunning: false,
       lastCheckTime: 0,
       results: [],
@@ -74,33 +73,35 @@ const DrinkSpeedrun: React.FC = () => {
 
   const startSpeedrun = () => {
     const shuffled = [...drinksData].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, state.numDrinks);
     setState({
       ...state,
-      selectedDrinks: shuffled.slice(0, state.numDrinks),
+      selectedDrinks: selected,
+      completedDrinks: new Array(selected.length).fill(false),
       isRunning: true,
-      currentDrinkIndex: 0,
       timer: 0,
       lastCheckTime: 0,
       results: [],
     });
   };
 
-  const checkDrink = () => {
+  const checkDrink = (index: number) => {
+    if (state.completedDrinks[index]) return;
+
     const timeTaken = state.timer - state.lastCheckTime;
-    const newResults = [...state.results, { name: state.selectedDrinks[state.currentDrinkIndex].name, timeTaken }];
-    if (state.currentDrinkIndex < state.selectedDrinks.length - 1) {
-      setState({
-        ...state,
-        results: newResults,
-        lastCheckTime: state.timer,
-        currentDrinkIndex: state.currentDrinkIndex + 1,
-      });
-    } else {
-      setState({
-        ...state,
-        results: newResults,
-        isRunning: false,
-      });
+    const newResults = [...state.results, { name: state.selectedDrinks[index].name, timeTaken }];
+    const newCompletedDrinks = [...state.completedDrinks];
+    newCompletedDrinks[index] = true;
+
+    setState({
+      ...state,
+      results: newResults,
+      completedDrinks: newCompletedDrinks,
+      lastCheckTime: state.timer,
+    });
+
+    if (newResults.length === state.selectedDrinks.length) {
+      setState(prevState => ({ ...prevState, isRunning: false }));
     }
   };
 
@@ -113,7 +114,7 @@ const DrinkSpeedrun: React.FC = () => {
   const calculateResults = () => {
     const totalTime = state.results.reduce((sum, result) => sum + result.timeTaken, 0);
     const averageTime = totalTime / state.results.length;
-    const unfinishedDrinks = state.selectedDrinks.slice(state.results.length);
+    const unfinishedDrinks = state.selectedDrinks?.filter((_, index) => !state.completedDrinks?.[index]);
 
     return (
       <Card className="mt-4">
@@ -149,11 +150,12 @@ const DrinkSpeedrun: React.FC = () => {
       timer: 0,
       numDrinks: 5,
       selectedDrinks: [],
-      currentDrinkIndex: 0,
+      completedDrinks: [],
       isRunning: false,
       lastCheckTime: 0,
       results: [],
     });
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   return (
@@ -164,25 +166,39 @@ const DrinkSpeedrun: React.FC = () => {
           <Input
             type="number"
             value={state.numDrinks}
-            onChange={(e) => setState({...state, numDrinks: parseInt(e.target.value)})}
+            onChange={(e) => setState({...state, numDrinks: Math.max(1, Math.min(20, parseInt(e.target.value)))})}
             placeholder="Number of drinks"
             className="mb-2"
           />
-          <Button onClick={startSpeedrun}>Start Speedrun</Button>
+          <Button onClick={startSpeedrun} className="mr-2">Start Speedrun</Button>
+          <Button onClick={resetSpeedrun} variant="outline">Clear State</Button>
         </div>
       )}
       {state.isRunning && (
-        <Card className="mb-4">
-          <CardHeader>
-            <CardTitle>{state.selectedDrinks[state.currentDrinkIndex].name}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>{state.selectedDrinks[state.currentDrinkIndex].description}</p>
-            <p className="mt-2">Time: {formatTime(state.timer)}</p>
-            <p>Time since last drink: {formatTime(state.timer - state.lastCheckTime)}</p>
-            <Button onClick={checkDrink} className="mt-2">Complete</Button>
-          </CardContent>
-        </Card>
+        <div>
+          <p className="mb-2">Time: {formatTime(state.timer)}</p>
+          <p className="mb-4">Time since last drink: {formatTime(state.timer - state.lastCheckTime)}</p>
+          {state.selectedDrinks.map((drink, index) => (
+            <Card key={drink.key} className="mb-4">
+              <CardHeader>
+                <CardTitle className="flex justify-between items-center">
+                  {drink.name}
+                  {state.completedDrinks[index] && <CheckCircle className="text-green-500" />}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>{drink.description}</p>
+                <Button 
+                  onClick={() => checkDrink(index)} 
+                  className="mt-2" 
+                  disabled={state.completedDrinks[index]}
+                >
+                  Complete
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       )}
       {!state.isRunning && state.results.length > 0 && (
         <>
