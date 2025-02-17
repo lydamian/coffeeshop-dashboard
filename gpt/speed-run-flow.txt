@@ -179,3 +179,8 @@ given the below data help me generate the above code
     "category": "For kids"
   }
 ]
+
+Also i want it to be persistent such that if i accidently refresh the page it wont go away
+Also add a button to clear the state since it wont go away with refresheshes
+
+also make sure if the user inputs 10 we display a list of 10
