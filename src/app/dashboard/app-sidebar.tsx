@@ -13,7 +13,21 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
+  SidebarFooter,
 } from "@/components/ui/sidebar"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+import {
+  BookOpenIcon,
+  WrenchIcon,
+  ChevronUpDownIcon
+} from "@heroicons/react/24/solid"
 
 type Navigation = {
   name: string;
@@ -23,60 +37,125 @@ type Navigation = {
   children?: Navigation[];
 };
 
-const data = {
+const data: { navMain: Navigation[] } = {
   navMain: [
     {
-      title: "Tools",
-      url: "#",
-      items: [
+      name: "Tools",
+      href: "#",
+      icon: WrenchIcon,
+      children: [
         {
-          title: "Speed run",
-          url: "/dashboard/tools/speed-run",
+          name: "Speed run",
+          href: "/dashboard/tools/speed-run",
+          icon: WrenchIcon,
         },
       ],
     },
     {
-      title: "Menu",
-      url: "/menu",
+      name: "Menu",
+      href: "/menu",
+      icon: BookOpenIcon,
     },
     {
-      title: "Recipes",
-      url: "#",
-      items: [
+      name: "Recipes",
+      href: "#",
+      icon: BookOpenIcon,
+      children: [
         {
-          title: "Esspresso",
-          url: "/recipes/espresso",
+          name: "Espresso",
+          href: "/recipes/espresso",
+          icon: () => <span>☕</span>,
         },
         {
-          title: "Cortado",
-          url: "/recipes/cortado",
+          name: "Cortado",
+          href: "/recipes/cortado",
+          icon: () => <span>☕</span>,
         },
         {
-          title: "Latte",
-          url: "/recipes/latte",
+          name: "Latte",
+          href: "/recipes/latte",
+          icon: () => <span>☕</span>,
         },
       ],
     },
   ],
-}
-
+};
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [currentPath, setCurrentPath] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentPath(window.location.pathname);
+    }
+  }, []);
+
+  const renderMenuButton = (item: Navigation) => {
+    const content = (
+      <>
+        {item.icon && <item.icon className="mr-2 h-5 w-5" />}
+        {item.name}
+      </>
+    );
+
+    if (item.href) {
+      return (
+        <a href={item.href} className="flex items-center font-medium">
+          {content}
+        </a>
+      );
+    } else {
+      return (
+        <span className="flex items-center font-medium cursor-default">
+          {content}
+        </span>
+      );
+    }
+  };
+
+  const renderSubMenuButton = (subItem: Navigation) => {
+    const content = (
+      <>
+        {subItem.icon && <subItem.icon className="mr-2 h-4 w-4" />}
+        {subItem.name}
+      </>
+    );
+
+    if (subItem.href) {
+      return (
+        <a href={subItem.href} className="flex items-center">
+          {content}
+        </a>
+      );
+    } else {
+      return (
+        <span className="flex items-center cursor-default">
+          {content}
+        </span>
+      );
+    }
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <GalleryVerticalEnd className="size-4" />
-                </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Documentation</span>
-                  <span className="">v1.0.0</span>
-                </div>
-              </a>
-            </SidebarMenuButton>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size="lg"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <GalleryVerticalEnd className="size-4" />
+                  </div>
+                  <div className="flex flex-col gap-0.5 leading-none">
+                    <span className="font-semibold">Documentation</span>
+                  </div>
+                  <ChevronUpDownIcon className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -84,18 +163,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             {data.navMain.map((item) => (
-              <SidebarMenuItem key={item.title}>
+              <SidebarMenuItem key={item.name}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url} className="font-medium">
-                    {item.title}
-                  </a>
+                  {renderMenuButton(item)}
                 </SidebarMenuButton>
-                {item.items?.length ? (
+                {item.children?.length ? (
                   <SidebarMenuSub>
-                    {item.items.map((item) => (
-                      <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild isActive={item.isActive}>
-                          <a href={item.url}>{item.title}</a>
+                    {item.children.map((subItem) => (
+                      <SidebarMenuSubItem key={subItem.name}>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={currentPath === subItem.href}
+                        >
+                          {renderSubMenuButton(subItem)}
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -106,7 +186,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
+
+export const navMain = data.navMain;
+export type { Navigation };

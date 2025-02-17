@@ -15,3 +15,5 @@ npx shadcn@canary init
 npx shadcn@canary add
 
 git remote add origin https://github.com/lydamian/coffeeshop-dashboard.git
+
+Good online recipes https://us.jura.com/en/about-coffee/coffee-recipes
