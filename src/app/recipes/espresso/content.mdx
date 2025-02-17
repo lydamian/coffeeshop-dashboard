@@ -1,85 +1,147 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { Input } from "@/components/ui/input"
+import { Slider } from "@/components/ui/slider"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-# Making a Custom Shot of Espresso
+# How to Prepare Espresso at RU Coffee Bar
 
-## Equipment Needed:
-- Espresso machine
-- Portafilter
-- Espresso grinder
-- Scale
-- Tamper
-- Clean cloth
-
-## Ingredients:
-- Freshly roasted espresso beans
-
-## Custom Recipe Calculator
-
+## Ingredients and Equipment
 export const EspressoCalculator = () => {
-  const [outputGrams, setOutputGrams] = useState(36);
-  const inputGrams = Math.round(outputGrams / 2);
-  const extractionTime = Math.round(outputGrams * 0.75);
+  const [coffeeGrams, setCoffeeGrams] = useState(18);
+  const [espressoYield, setEspressoYield] = useState(36);
+  const [time, setTime] = useState(27);
+
+  const updateValues = (type, value) => {
+    switch(type) {
+      case 'coffee':
+        setCoffeeGrams(value);
+        setEspressoYield(value * 2);
+        setTime(Math.round(value * 1.5)); // Adjust time based on coffee dose
+        break;
+      case 'yield':
+        setEspressoYield(value);
+        setCoffeeGrams(value / 2);
+        setTime(Math.round(value * 0.75)); // Adjust time based on yield
+        break;
+      case 'time':
+        setTime(value);
+        // Optionally, you could adjust yield based on time change
+        // setEspressoYield(Math.round(value / 0.75));
+        break;
+    }
+  }
 
   return (
-    <div className="my-4 p-4 border rounded-md bg-gray-100">
-      <label className="block mb-2">
-        Desired espresso output (grams):
-        <input 
-          type="number" 
-          value={outputGrams} 
-          onChange={(e) => setOutputGrams(Number(e.target.value))}
-          className="ml-2 p-1 border rounded"
-        />
-      </label>
-      <p>Input coffee: <strong>{inputGrams} grams</strong></p>
-      <p>Target extraction time: <strong>{extractionTime} seconds</strong></p>
-    </div>
-  );
-};
+    <Card className="my-4">
+      <CardHeader>
+        <CardTitle>Espresso Recipe Calculator</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="coffee-input">Coffee (g):</label>
+            <Input 
+              id="coffee-input"
+              type="number" 
+              value={coffeeGrams} 
+              onChange={(e) => updateValues('coffee', Number(e.target.value))}
+            />
+          </div>
+          <div>
+            <label htmlFor="yield-input">Yield (g):</label>
+            <Input 
+              id="yield-input"
+              type="number" 
+              value={espressoYield} 
+              onChange={(e) => updateValues('yield', Number(e.target.value))}
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <label htmlFor="time-slider">Extraction Time (seconds): {time}</label>
+          <Slider
+            id="time-slider"
+            min={20}
+            max={35}
+            step={1}
+            value={[time]}
+            onValueChange={(value) => updateValues('time', value[0])}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
 
 <EspressoCalculator />
 
-## Steps:
+- Freshly roasted espresso beans
+- Grinder
+- Dosing cup
+- Portafilter
+- Tamper
+- Distribution tool (e.g., NCD tool)
+- Espresso machine
 
-1. **Warm up the machine:**
-   - Turn on your espresso machine and allow it to heat up (usually 15-30 minutes).
-   - Run water through the group head to ensure it's hot.
+## Steps
 
-2. **Prepare your portafilter:**
-   - Ensure your portafilter is clean and dry.
-   - Warm it by locking it into the group head briefly.
+1. **Grind the coffee**
+   - Grind the coffee beans into the dosing cup
+   - Aim for a fine, consistent grind
 
-3. **Grind the coffee:**
-   - Grind the amount of coffee beans calculated above.
-   - Adjust grind size to be fine, similar to table salt.
+2. **Dose and distribute**
+   - Shake the dosing cup vigorously left to right
+   - Invert the dosing cup onto the portafilter
+   - Tap the edge of the dosing cup in a circular fashion to distribute the coffee evenly
+   - Remove the dosing cup carefully
 
-4. **Dose the coffee:**
-   - Place the portafilter on a scale.
-   - Add the ground coffee to the portafilter.
-   - Ensure even distribution in the basket.
+3. **Prepare the puck**
+   - Gently tap the portafilter on the counter to settle the grounds
+   - Use the NCD tool to further distribute and level the coffee
+   - Tamp the coffee with consistent pressure (about 30 lbs)
 
-5. **Tamp the coffee:**
-   - Apply even pressure (about 30 lbs) with the tamper.
-   - Aim for a level, compressed puck of coffee.
+4. **Pull the shot**
+   - Lock the portafilter into the espresso machine
+   - Start the extraction immediately
+   - Monitor the flow and time of the extraction
 
-6. **Insert and brew:**
-   - Lock the portafilter into the group head.
-   - Start the shot immediately.
-   - Place your cup under the spouts.
+5. **Evaluate and serve**
+   - Stop the shot when you reach your target yield
+   - Assess the appearance, aroma, and taste of the espresso
+   - Serve immediately for the best experience
 
-7. **Monitor the extraction:**
-   - Watch the flow of espresso.
-   - Aim for the extraction time calculated above.
-   - Look for a honey-like consistency.
+## Tips for Troubleshooting and Perfecting Your Espresso
 
-8. **Stop the shot:**
-   - Stop the extraction when you've reached your desired output weight.
+1. **Grind size adjustment**
+   - If the shot runs too fast: Grind finer
+   - If the shot runs too slow: Grind coarser
 
-9. **Serve and enjoy:**
-   - Serve immediately for best flavor and temperature.
-   - Clean your equipment for the next use.
+2. **Distribution technique**
+   - Ensure even distribution to prevent channeling
+   - Be consistent with your tapping and NCD tool use
 
-## Tips:
-- Adjust grind size finer if the shot runs too fast, coarser if too slow.
-- Consistently use the same tamping pressure for reproducible results.
-- Always use freshly roasted beans for the best flavor.
+3. **Tamping pressure**
+   - Maintain consistent pressure (about 30 lbs) for reproducible results
+   - Use a calibrated tamper for training if needed
+
+4. **Temperature consideration**
+   - Different roast levels may require different brewing temperatures
+   - Lighter roasts often benefit from slightly higher temperatures
+
+5. **Freshness matters**
+   - Use beans within 2-4 weeks of their roast date for optimal flavor
+   - Store beans in an airtight container away from light and heat
+
+6. **Taste and adjust**
+   - If the espresso tastes sour: It may be under-extracted. Try a finer grind or longer extraction time
+   - If the espresso tastes bitter: It may be over-extracted. Try a coarser grind or shorter extraction time
+
+7. **Regular maintenance**
+   - Keep your equipment clean and well-maintained for consistent results
+   - Backflush your machine regularly and descale as needed
+
+8. **Stay curious and experiment**
+   - Keep a log of your recipes and outcomes
+   - Don't be afraid to try small adjustments to perfect your espresso
+
+Remember, perfecting espresso is a journey. Consistency in technique, attention to detail, and a willingness to learn and adjust are key to producing excellent espresso at RU Coffee Bar.

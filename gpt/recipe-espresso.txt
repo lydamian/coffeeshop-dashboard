@@ -1,0 +1,29 @@
+Hi I am using nextjs, typescript, tailwindcss, shadcdnui, mdx
+for an internal tools app for training barista's in a specialty coffee shop
+called ru coffee bar.
+
+But please make the default values, the normal values for a specialty coffee shop in America.
+
+Help me create a mdx file for:
+
+Steps on how to prepare espresso.
+
+Please keep in mind the ratios.
+
+Please make all variables toggleable as form inputs (e.g input coffee grams, changes to one should change the other variables )
+But please make the default values, the normal values for a specialty coffee shop in America.
+
+
+For puck preperation, some things to note that we do differently is
+we grind in a dosing up,
+then shake it vigorously left to right, before transferring to a portafilter.
+Once in the porta filter and before removing the dosing cup we tap the edge in a circular fashion
+to evenly distribute the espresso.
+
+then remvoe the dosing cup.
+
+Tap to make the espresso even
+then use ncd tool
+then tamp
+
+Please always put tips at the end for how to trouble shoot and make the best cup of espresso
