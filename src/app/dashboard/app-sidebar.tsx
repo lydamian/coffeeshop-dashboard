@@ -72,9 +72,99 @@ const data: { navMain: Navigation[] } = {
           icon: () => <span>☕</span>,
         },
         {
+          name: "Cappuccino",
+          href: "/recipes/cappuccino",
+          icon: () => <span>☕</span>,
+        },
+        {
           name: "Latte",
           href: "/recipes/latte",
           icon: () => <span>☕</span>,
+        },
+        {
+          name: "Americano",
+          href: "/recipes/americano",
+          icon: () => <span>☕</span>,
+        },
+        {
+          name: "Lychee Espresso Tonic",
+          href: "/recipes/lychee-espresso-tonic",
+          icon: () => <span>🍹</span>,
+        },
+        {
+          name: "Vanilla Latte",
+          href: "/recipes/vanilla-latte",
+          icon: () => <span>☕</span>,
+        },
+        {
+          name: "Black Sugar Latte",
+          href: "/recipes/black-sugar-latte",
+          icon: () => <span>☕</span>,
+        },
+        {
+          name: "Tie Guan Yin Fruit Tea",
+          href: "/recipes/tie-guan-yin-fruit-tea",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Black Sugar Hojicha Latte",
+          href: "/recipes/black-sugar-hojicha-latte",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Berry Fizz",
+          href: "/recipes/berry-fizz",
+          icon: () => <span>🍓</span>,
+        },
+        {
+          name: "Matcha Latte",
+          href: "/recipes/matcha-latte",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Zesty Matcha Latte",
+          href: "/recipes/zesty-matcha-latte",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Jasmine Matcha Latte",
+          href: "/recipes/jasmine-matcha-latte",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Tie Guan Yin",
+          href: "/recipes/tie-guan-yin",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Jasmine Jixuan",
+          href: "/recipes/jasmine-jixuan",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "High Mountain Oolong Tea",
+          href: "/recipes/high-mountain-oolong-tea",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Banana Milk",
+          href: "/recipes/banana-milk",
+          icon: () => <span>🍌</span>,
+        },
+        {
+          name: "Strawberry Milk",
+          href: "/recipes/strawberry-milk",
+          icon: () => <span>🍓</span>,
+        },
+        {
+          name: "Milk",
+          href: "/recipes/milk",
+          icon: () => <span>🥛</span>,
+        },
+        {
+          name: "Steamed Milk",
+          href: "/recipes/steamed-milk",
+          icon: () => <span>🥛</span>,
         },
       ],
     },

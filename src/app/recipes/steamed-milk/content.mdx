@@ -1,0 +1,196 @@
+'use client';
+
+import { useState } from 'react'
+import { Input } from "@/components/ui/input"
+import { Slider } from "@/components/ui/slider"
+import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from 'next/link'
+
+# How to Steam Milk at RU Coffee Bar
+
+Steaming milk is a fundamental skill in a specialty coffee shop, crucial for creating delicious lattes, cappuccinos, and other espresso-based drinks. Properly steamed milk enhances the flavor and texture of the beverage, allowing for beautiful latte art and a satisfying experience.
+
+## Milk Steaming Guide
+
+### Milk Steaming Calculator
+
+export const MilkSteamingCalculator = () => {
+  const [milkVolumeOz, setMilkVolumeOz] = useState(8);
+  const [targetTemp, setTargetTemp] = useState(150);
+
+  const [stretchingTime, setStretchingTime] = useState(4);
+  const [steamingTime, setSteamingTime] = useState(10);
+
+  const updateValues = (type, value) => {
+    switch(type) {
+      case 'milkVolume':
+        setMilkVolumeOz(value);
+        calculateTimes(value, targetTemp);
+        break;
+      case 'targetTemp':
+        setTargetTemp(value);
+        calculateTimes(milkVolumeOz, value);
+        break;
+    }
+  }
+
+  const calculateTimes = (volume, temp) => {
+    // Simplified estimation: Adjust stretching and steaming times based on volume and temperature
+    setStretchingTime(Math.round((volume / 8) * 4));
+    setSteamingTime(Math.round((temp - 100) / 5));
+  }
+
+  return (
+    <Card className="my-4">
+      <CardHeader>
+        <CardTitle>Milk Steaming Calculator</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="milkVolume-input">Milk Volume (oz):</label>
+            <Input 
+              id="milkVolume-input"
+              type="number" 
+              value={milkVolumeOz} 
+              onChange={(e) => updateValues('milkVolume', Number(e.target.value))}
+              step="1"
+              min="2"
+              max="20"
+            />
+          </div>
+          <div>
+            <label htmlFor="targetTemp-input">Target Temperature (°F):</label>
+            <Input 
+              id="targetTemp-input"
+              type="number" 
+              value={targetTemp} 
+              onChange={(e) => updateValues('targetTemp', Number(e.target.value))}
+              step="5"
+              min="120"
+              max="170"
+            />
+          </div>
+        </div>
+        <p className="mt-4">Recommended Stretching Time: {stretchingTime} seconds</p>
+        <p>Recommended Steaming Time: {steamingTime} seconds</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+<MilkSteamingCalculator />
+
+## Equipment Needed
+
+- **Milk Pitcher**: Appropriate size for the volume of milk (e.g., 12 oz pitcher for 8 oz milk)
+- **Espresso Machine with Steam Wand**
+- **Thermometer** (optional, for training purposes)
+- **Cold Milk**: Whole milk preferred for best texture; alternatives can be used
+
+## Steps to Steam Milk
+
+1. **Prepare the Pitcher**
+
+   - Start with a clean, cold milk pitcher.
+   - Pour the desired amount of cold milk into the pitcher.
+   - Fill the pitcher up to the bottom of the spout to allow room for expansion.
+
+2. **Purge the Steam Wand**
+
+   - Briefly open the steam valve to release any condensation.
+   - This ensures dry steam for optimal milk texture.
+
+3. **Position the Steam Wand**
+
+   - Submerge the tip of the steam wand just below the surface of the milk.
+   - Position the wand near the side of the pitcher at a slight angle.
+
+4. **Stretching Phase (Aeration)**
+
+   - Open the steam valve fully.
+   - Lower the pitcher slowly to keep the tip at the surface, introducing air.
+   - Listen for a gentle hissing or tsk-tsk sound.
+   - Continue for **stretchingTime seconds** (as per the calculator).
+
+5. **Steaming Phase (Texturing)**
+
+   - Raise the pitcher to submerge the wand tip deeper into the milk.
+   - Position the pitcher to create a vortex or whirlpool.
+   - Continue heating until the milk reaches **targetTemp°F**.
+   - The pitcher should become hot to touch but not uncomfortable (around 150°F).
+
+6. **Finalize and Clean**
+
+   - Turn off the steam valve before removing the wand to prevent splattering.
+   - Wipe the steam wand with a damp cloth immediately.
+   - Purge the steam wand to clear any milk residue.
+
+7. **Polish the Milk**
+
+   - Tap the pitcher gently on the counter to remove any large bubbles.
+   - Swirl the milk to integrate the foam and create a glossy texture.
+
+8. **Use Immediately**
+
+   - Pour the milk into the espresso or base beverage promptly.
+   - Utilize latte art techniques if desired.
+
+## Tips for Perfectly Steamed Milk
+
+1. **Milk Choice**
+
+   - Use fresh, cold whole milk for optimal texture and sweetness.
+   - Alternative milks (oat, almond, soy) may require slight adjustments.
+
+2. **Temperature Control**
+
+   - Avoid overheating; milk scalds above 170°F, affecting taste and texture.
+   - Ideal serving temperature is 150-160°F.
+
+3. **Sound Cues**
+
+   - Listen for the subtle hissing during stretching.
+   - Large screeching sounds indicate the wand is too far above the surface.
+
+4. **Visual Cues**
+
+   - Aim for a smooth, glossy surface without visible bubbles.
+   - Milk should have a velvety, paint-like consistency.
+
+5. **Consistency Through Practice**
+
+   - Steaming milk is a skill developed over time; consistent practice is key.
+   - Experiment with different pitcher sizes and milk volumes.
+
+## Common Mistakes to Avoid
+
+- **Over-Aeration**
+
+  - Introducing too much air results in overly foamy milk unsuitable for latte art.
+
+- **Under-Aeration**
+
+  - Not incorporating enough air leads to flat milk lacking texture.
+
+- **Incorrect Wand Position**
+
+  - Placement affects the whirlpool and texture; adjust as needed.
+
+- **Not Purging the Wand**
+
+  - Failure to purge can introduce water into the milk and promote bacterial growth.
+
+## Additional Resources
+
+- **Latte Art Techniques**
+
+  - Explore more about latte art in our [Latte Art Guide](/guides/latte-art).
+
+- **Espresso Preparation**
+
+  - Ensure your base espresso is well-prepared by following our [Espresso Recipe](/recipes/espresso).
+
+Happy steaming! Perfectly textured milk elevates the coffee experience and showcases the skill of the barista.
