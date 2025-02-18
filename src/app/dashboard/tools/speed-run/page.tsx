@@ -105,6 +105,21 @@ const DrinkSpeedrun: React.FC = () => {
     }
   };
 
+  const finishSpeedrun = () => {
+    const unfinishedDrinks = state.selectedDrinks.filter((_, index) => !state.completedDrinks[index]);
+    const newResults = [
+      ...state.results,
+      ...unfinishedDrinks.map(drink => ({ name: drink.name, timeTaken: 0 }))
+    ];
+
+    setState(prevState => ({
+      ...prevState,
+      isRunning: false,
+      results: newResults,
+      completedDrinks: new Array(prevState.selectedDrinks.length).fill(true),
+    }));
+  };
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -114,7 +129,6 @@ const DrinkSpeedrun: React.FC = () => {
   const calculateResults = () => {
     const totalTime = state.results.reduce((sum, result) => sum + result.timeTaken, 0);
     const averageTime = totalTime / state.results.length;
-    const unfinishedDrinks = state.selectedDrinks?.filter((_, index) => !state.completedDrinks?.[index]);
 
     return (
       <Card className="mt-4">
@@ -127,19 +141,11 @@ const DrinkSpeedrun: React.FC = () => {
           <h3 className="font-bold mt-2">Time per Drink:</h3>
           <ul>
             {state.results.map((result, index) => (
-              <li key={index}>{result.name}: {formatTime(result.timeTaken)}</li>
+              <li key={index}>
+                {result.name}: {result.timeTaken === 0 ? 'Not completed' : formatTime(result.timeTaken)}
+              </li>
             ))}
           </ul>
-          {unfinishedDrinks.length > 0 && (
-            <>
-              <h3 className="font-bold mt-2">Unfinished Drinks:</h3>
-              <ul>
-                {unfinishedDrinks.map((drink, index) => (
-                  <li key={index}>{drink.name}</li>
-                ))}
-              </ul>
-            </>
-          )}
         </CardContent>
       </Card>
     );
@@ -198,6 +204,7 @@ const DrinkSpeedrun: React.FC = () => {
               </CardContent>
             </Card>
           ))}
+          <Button onClick={finishSpeedrun} className="mt-4">Finish Speedrun</Button>
         </div>
       )}
       {!state.isRunning && state.results.length > 0 && (
