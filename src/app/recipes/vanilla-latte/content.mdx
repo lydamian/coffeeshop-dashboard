@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
@@ -11,7 +9,7 @@ A latte flavored with vanilla syrup for a sweet and aromatic taste
 
 ## Vanilla Latte Calculator
 
-export const Vanilla LatteCalculator = () => {
+export const VanillaLatteCalculator = () => {
   const [mainIngredient, setMainIngredient] = useState(30);
   const [secondaryIngredient, setSecondaryIngredient] = useState(30);
   const [totalVolume, setTotalVolume] = useState(60);
@@ -65,7 +63,7 @@ export const Vanilla LatteCalculator = () => {
   )
 }
 
-<Vanilla LatteCalculator />
+<VanillaLatteCalculator />
 
 ## Ingredients and Equipment
 
@@ -89,5 +87,3 @@ export const Vanilla LatteCalculator = () => {
 3. **Consistency**: Practice to maintain a consistent ratio and texture
 
 Remember, perfecting your Vanilla Latte is a journey. Keep experimenting and refining your technique!
-
-</Card>

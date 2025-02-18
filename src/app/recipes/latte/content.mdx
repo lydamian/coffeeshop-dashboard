@@ -1,34 +1,32 @@
-'use client';
-
 import { useState, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link'
 
-# How to Prepare Latte at RU Coffee Bar
+# How to Prepare a Latte at RU Coffee Bar
 
-Espresso with steamed milk and a small layer of milk foam on top
+A latte is a popular espresso-based drink consisting of espresso and steamed milk, topped with a small layer of milk foam. It's known for its creamy texture and mild coffee flavor.
 
 ## Latte Calculator
 
 export const LatteCalculator = () => {
-  const [mainIngredient, setMainIngredient] = useState(30);
-  const [secondaryIngredient, setSecondaryIngredient] = useState(30);
-  const [totalVolume, setTotalVolume] = useState(60);
+  const [espressoOz, setEspressoOz] = useState(2);
+  const [steamedMilkOz, setSteamedMilkOz] = useState(8);
+  const [totalVolume, setTotalVolume] = useState(steamedMilkOz + espressoOz);
 
   useEffect(() => {
-    setTotalVolume(mainIngredient + secondaryIngredient);
-  }, [mainIngredient, secondaryIngredient]);
+    setTotalVolume(espressoOz + steamedMilkOz);
+  }, [espressoOz, steamedMilkOz]);
 
   const updateValues = (type, value) => {
     switch(type) {
-      case 'main':
-        setMainIngredient(value);
-        setSecondaryIngredient(value);
+      case 'espresso':
+        setEspressoOz(value);
+        setSteamedMilkOz(10 - value);
         break;
-      case 'secondary':
-        setSecondaryIngredient(value);
-        setMainIngredient(value);
+      case 'steamedMilk':
+        setSteamedMilkOz(value);
+        setEspressoOz(10 - value);
         break;
     }
   }
@@ -41,25 +39,32 @@ export const LatteCalculator = () => {
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="main-input">Main Ingredient (g):</label>
+            <label htmlFor="espresso-input">Espresso (oz):</label>
             <Input 
-              id="main-input"
+              id="espresso-input"
               type="number" 
-              value={mainIngredient} 
-              onChange={(e) => updateValues('main', Number(e.target.value))}
+              value={espressoOz} 
+              onChange={(e) => updateValues('espresso', Number(e.target.value))}
+              step="0.25"
+              min="1"
+              max="3"
             />
           </div>
           <div>
-            <label htmlFor="secondary-input">Secondary Ingredient (g):</label>
+            <label htmlFor="steamedMilk-input">Steamed Milk (oz):</label>
             <Input 
-              id="secondary-input"
+              id="steamedMilk-input"
               type="number" 
-              value={secondaryIngredient} 
-              onChange={(e) => updateValues('secondary', Number(e.target.value))}
+              value={steamedMilkOz} 
+              onChange={(e) => updateValues('steamedMilk', Number(e.target.value))}
+              step="0.25"
+              min="9"
+              max="11"
             />
           </div>
         </div>
-        <p className="mt-4">Total Volume: {totalVolume}ml</p>
+        <p className="mt-4">Total Volume: {totalVolume} oz</p>
+        <p className="mt-2">Milk Foam: Approximately 0.5 oz on top</p>
       </CardContent>
     </Card>
   )
@@ -69,24 +74,43 @@ export const LatteCalculator = () => {
 
 ## Ingredients and Equipment
 
-- Espresso, steamed milk, milk foam
+- Espresso (see <Link href="/recipes/espresso">Espresso Recipe</Link>)
+- Whole milk
+- Espresso machine with steam wand
+- Milk pitcher
+- 10 oz latte cup
 
-## Steps to Prepare Latte
+## Steps to Prepare a Latte
 
-1. **Prepare the main ingredient**
-   - [Add specific steps here]
+1. **Prepare the espresso**
+   - Follow the <Link href="/recipes/espresso">Espresso Recipe</Link> to pull a 2 oz double shot
 
-2. **Prepare the secondary ingredient**
-   - [Add specific steps here]
+2. **Steam the milk**
+   - Refer to the <Link href="/recipes/steamed-milk">Steamed Milk Guide</Link> for technique
+   - Steam about 10 oz of milk to 150-160°F (65-71°C)
+   - Create a smooth, velvety microfoam
 
 3. **Combine and serve**
-   - [Add specific steps here]
+   - Pour the espresso into a 10 oz latte cup
+   - Gently pour the steamed milk over the espresso, allowing a small layer of foam to form on top
+   - Aim for a ratio of 1/6 espresso to 5/6 steamed milk
 
-## Tips for the Perfect Latte
+## Latte Art
 
-1. **Ingredient quality**: Use high-quality ingredients for the best flavor
-2. **Temperature**: Serve at the appropriate temperature for the best experience
-3. **Consistency**: Practice to maintain a consistent ratio and texture
+Latte art is a hallmark of specialty coffee shops:
 
-Remember, perfecting your Latte is a journey. Keep experimenting and refining your technique!
+1. Start with the cup at a slight angle
+2. Pour the milk steadily into the center of the espresso
+3. As the cup fills, bring the pitcher closer to the surface
+4. Create patterns by moving the pour in a steady motion
+5. Finish with a gentle cut through for more intricate designs
 
+## Tips for the Perfect Specialty Latte
+
+1. **Espresso quality**: Use freshly roasted, high-quality beans and dial in your grind and extraction
+2. **Milk texture**: Focus on creating silky, velvety microfoam without large bubbles
+3. **Temperature**: Serve immediately for the best flavor and latte art potential
+4. **Balance**: Maintain the correct ratio of espresso to milk for a balanced flavor
+5. **Consistency**: Practice your milk steaming and pouring techniques regularly
+
+Remember, a great latte is about the harmony between the espresso and the silky steamed milk, with the latte art as the finishing touch.

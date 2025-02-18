@@ -1,34 +1,32 @@
-'use client';
-
 import { useState, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link'
 
-# How to Prepare Matcha Latte at RU Coffee Bar
+# How to Prepare a Matcha Latte at RU Coffee Bar
 
-Finely ground green tea whisked with steamed milk for a smooth, earthy drink
+A matcha latte is a popular drink made with finely ground green tea powder (matcha) and steamed milk. It's known for its vibrant green color, earthy flavor, and numerous health benefits.
 
 ## Matcha Latte Calculator
 
-export const Matcha LatteCalculator = () => {
-  const [mainIngredient, setMainIngredient] = useState(30);
-  const [secondaryIngredient, setSecondaryIngredient] = useState(30);
-  const [totalVolume, setTotalVolume] = useState(60);
+export const MatchaLatteCalculator = () => {
+  const [matchaOz, setMatchaOz] = useState(1);
+  const [steamedMilkOz, setSteamedMilkOz] = useState(11);
+  const [totalVolume, setTotalVolume] = useState(12);
 
   useEffect(() => {
-    setTotalVolume(mainIngredient + secondaryIngredient);
-  }, [mainIngredient, secondaryIngredient]);
+    setTotalVolume(matchaOz + steamedMilkOz);
+  }, [matchaOz, steamedMilkOz]);
 
   const updateValues = (type, value) => {
     switch(type) {
-      case 'main':
-        setMainIngredient(value);
-        setSecondaryIngredient(value);
+      case 'matcha':
+        setMatchaOz(value);
+        setSteamedMilkOz(12 - value);
         break;
-      case 'secondary':
-        setSecondaryIngredient(value);
-        setMainIngredient(value);
+      case 'steamedMilk':
+        setSteamedMilkOz(value);
+        setMatchaOz(12 - value);
         break;
     }
   }
@@ -41,53 +39,71 @@ export const Matcha LatteCalculator = () => {
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="main-input">Main Ingredient (g):</label>
+            <label htmlFor="matcha-input">Matcha Mixture (oz):</label>
             <Input 
-              id="main-input"
+              id="matcha-input"
               type="number" 
-              value={mainIngredient} 
-              onChange={(e) => updateValues('main', Number(e.target.value))}
+              value={matchaOz} 
+              onChange={(e) => updateValues('matcha', Number(e.target.value))}
+              step="0.25"
+              min="0.5"
+              max="2"
             />
           </div>
           <div>
-            <label htmlFor="secondary-input">Secondary Ingredient (g):</label>
+            <label htmlFor="steamedMilk-input">Steamed Milk (oz):</label>
             <Input 
-              id="secondary-input"
+              id="steamedMilk-input"
               type="number" 
-              value={secondaryIngredient} 
-              onChange={(e) => updateValues('secondary', Number(e.target.value))}
+              value={steamedMilkOz} 
+              onChange={(e) => updateValues('steamedMilk', Number(e.target.value))}
+              step="0.25"
+              min="10"
+              max="11.5"
             />
           </div>
         </div>
-        <p className="mt-4">Total Volume: {totalVolume}ml</p>
+        <p className="mt-4">Total Volume: {totalVolume} oz</p>
       </CardContent>
     </Card>
   )
 }
 
-<Matcha LatteCalculator />
+<MatchaLatteCalculator />
 
 ## Ingredients and Equipment
 
-- Matcha powder, steamed milk
+- High-quality matcha powder (1-2 tsp)
+- Hot water (1-2 oz)
+- Whole milk (or plant-based alternative)
+- Bamboo whisk (chasen) or electric frother
+- Matcha bowl (chawan) or small bowl
+- Espresso machine with steam wand or milk frother
+- 12 oz cup
 
-## Steps to Prepare Matcha Latte
+## Steps to Prepare a Matcha Latte
 
-1. **Prepare the main ingredient**
-   - [Add specific steps here]
+1. **Prepare the matcha**
+   - Sift 1-2 tsp of matcha powder into a matcha bowl or small bowl
+   - Add 1-2 oz of hot water (175°F/80°C)
+   - Whisk vigorously in a "W" motion until the matcha is fully dissolved and slightly frothy
 
-2. **Prepare the secondary ingredient**
-   - [Add specific steps here]
+2. **Steam the milk**
+   - Refer to the <Link href="/recipes/steamed-milk">Steamed Milk Guide</Link> for technique
+   - Steam about 10-11 oz of milk to 150-160°F (65-71°C)
+   - Create a smooth, velvety microfoam
 
 3. **Combine and serve**
-   - [Add specific steps here]
+   - Pour the prepared matcha into a 12 oz cup
+   - Gently pour the steamed milk over the matcha, allowing a small layer of foam to form on top
+   - Use a spoon to add any remaining foam to the top of the drink
 
 ## Tips for the Perfect Matcha Latte
 
-1. **Ingredient quality**: Use high-quality ingredients for the best flavor
-2. **Temperature**: Serve at the appropriate temperature for the best experience
-3. **Consistency**: Practice to maintain a consistent ratio and texture
+1. **Matcha quality**: Use high-grade, ceremonial matcha for the best flavor and color
+2. **Water temperature**: Use water that's hot but not boiling to avoid bitterness
+3. **Whisking technique**: Whisk briskly to fully dissolve the matcha and create a smooth texture
+4. **Milk choice**: Whole milk creates a rich latte, but plant-based milks like oat or almond can be great alternatives
+5. **Sweetener**: Matcha can be slightly bitter; offer optional sweeteners on the side
 
-Remember, perfecting your Matcha Latte is a journey. Keep experimenting and refining your technique!
-
-</Card>
+Remember, a great matcha latte should have a vibrant green color, smooth texture, and balanced flavor between the earthy matcha and creamy milk.
