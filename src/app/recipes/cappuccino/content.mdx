@@ -1,0 +1,119 @@
+'use client';
+
+import { useState, useEffect } from 'react'
+import { Input } from "@/components/ui/input"
+import { Slider } from "@/components/ui/slider"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link'
+
+# How to Prepare a Cappuccino at RU Coffee Bar
+
+A cappuccino is a classic espresso-based drink consisting of espresso and steamed milk, topped with a small layer of milk foam. In specialty coffee shops, the focus is on balance and quality of ingredients.
+
+## Cappuccino Calculator
+
+export const CappuccinoCalculator = () => {
+  const [espressoOz, setEspressoOz] = useState(2);
+  const [steamedMilkOz, setSteamedMilkOz] = useState(4);
+  const [totalVolume, setTotalVolume] = useState(6);
+
+  useEffect(() => {
+    setTotalVolume(espressoOz + steamedMilkOz);
+  }, [espressoOz, steamedMilkOz]);
+
+  const updateValues = (type, value) => {
+    switch(type) {
+      case 'espresso':
+        setEspressoOz(value);
+        setSteamedMilkOz(6 - value);
+        break;
+      case 'steamedMilk':
+        setSteamedMilkOz(value);
+        setEspressoOz(6 - value);
+        break;
+    }
+  }
+
+  return (
+    <Card className="my-4">
+      <CardHeader>
+        <CardTitle>Cappuccino Recipe Calculator</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="espresso-input">Espresso (oz):</label>
+            <Input 
+              id="espresso-input"
+              type="number" 
+              value={espressoOz} 
+              onChange={(e) => updateValues('espresso', Number(e.target.value))}
+              step="0.25"
+              min="1"
+              max="3"
+            />
+          </div>
+          <div>
+            <label htmlFor="steamedMilk-input">Steamed Milk (oz):</label>
+            <Input 
+              id="steamedMilk-input"
+              type="number" 
+              value={steamedMilkOz} 
+              onChange={(e) => updateValues('steamedMilk', Number(e.target.value))}
+              step="0.25"
+              min="3"
+              max="5"
+            />
+          </div>
+        </div>
+        <p className="mt-4">Total Volume: {totalVolume} oz</p>
+        <p className="mt-2">Milk Foam: Approximately 0.5 oz on top</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+<CappuccinoCalculator />
+
+## Ingredients and Equipment
+
+- Espresso (see <Link href="/recipes/espresso">Espresso Recipe</Link>)
+- Whole milk
+- Espresso machine with steam wand
+- Milk pitcher
+- 6 oz cappuccino cup
+
+## Steps to Prepare a Cappuccino
+
+1. **Prepare the espresso**
+   - Follow the <Link href="/recipes/espresso">Espresso Recipe</Link> to pull a 2 oz double shot
+
+2. **Steam the milk**
+   - Refer to the <Link href="/recipes/steamed-milk">Steamed Milk Guide</Link> for technique
+   - For a cappuccino, create a velvety microfoam with small, tight bubbles
+   - Steam about 4 oz of milk to 140-150°F (60-65°C)
+
+3. **Combine and serve**
+   - Pour the espresso into a 6 oz cappuccino cup
+   - Gently pour the steamed milk over the espresso, allowing a small layer of foam to form on top
+   - Aim for a ratio of 1/3 espresso to 2/3 steamed milk, with a thin layer of foam on top
+
+## Cappuccino Art
+
+In specialty coffee shops, latte art is often applied to cappuccinos:
+
+1. Start with the cup at a slight angle
+2. Pour the milk steadily into the center of the espresso
+3. As the cup fills, bring the pitcher closer to the surface
+4. Create patterns by moving the pour in a steady motion
+5. Finish with a gentle cut through for more intricate designs
+
+## Tips for the Perfect Specialty Cappuccino
+
+1. **Espresso quality**: Use freshly roasted, high-quality beans and dial in your grind and extraction
+2. **Milk texture**: Focus on creating silky, velvety microfoam without large bubbles
+3. **Temperature**: Serve immediately for the best flavor and texture
+4. **Balance**: Maintain a 1:2 ratio of espresso to steamed milk for a modern specialty cappuccino
+5. **Consistency**: Practice your milk steaming and pouring techniques regularly
+
+Remember, in specialty coffee, the emphasis is on highlighting the quality of the espresso while achieving a harmonious balance with perfectly textured milk. The modern specialty cappuccino typically has less foam and a higher milk-to-espresso ratio compared to traditional Italian cappuccinos.

@@ -1,41 +1,34 @@
+'use client';
+
 import { useState, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link'
 
 # How to Prepare a Cortado at RU Coffee Bar
 
-A cortado is a balanced espresso drink originating from Spain, consisting of equal parts espresso and steamed milk. The name "cortado" means "cut" in Spanish, referring to the milk cutting through the espresso.
+A cortado is a balanced espresso drink of Spanish origin, consisting of equal parts espresso and steamed milk. The name "cortado" means "cut" in Spanish, referring to the milk cutting through the espresso.
 
 ## Cortado Calculator
 
 export const CortadoCalculator = () => {
-  const [espressoGrams, setEspressoGrams] = useState(30);
-  const [milkGrams, setMilkGrams] = useState(30);
-  const [espressoShots, setEspressoShots] = useState(2);
-  const [totalVolume, setTotalVolume] = useState(60);
+  const [espressoOz, setEspressoOz] = useState(2);
+  const [steamedMilkOz, setSteamedMilkOz] = useState(2);
+  const [totalVolume, setTotalVolume] = useState(4);
 
   useEffect(() => {
-    setTotalVolume(espressoGrams + milkGrams);
-  }, [espressoGrams, milkGrams]);
+    setTotalVolume(espressoOz + steamedMilkOz);
+  }, [espressoOz, steamedMilkOz]);
 
   const updateValues = (type, value) => {
     switch(type) {
       case 'espresso':
-        setEspressoGrams(value);
-        setMilkGrams(value); // Maintain 1:1 ratio
-        setEspressoShots(Math.round(value / 15)); // Assume 15g per shot
+        setEspressoOz(value);
+        setSteamedMilkOz(value);
         break;
-      case 'milk':
-        setMilkGrams(value);
-        setEspressoGrams(value); // Maintain 1:1 ratio
-        setEspressoShots(Math.round(value / 15)); // Assume 15g per shot
-        break;
-      case 'shots':
-        const newEspressoGrams = value * 15;
-        setEspressoShots(value);
-        setEspressoGrams(newEspressoGrams);
-        setMilkGrams(newEspressoGrams); // Maintain 1:1 ratio
+      case 'steamedMilk':
+        setSteamedMilkOz(value);
+        setEspressoOz(value);
         break;
     }
   }
@@ -48,36 +41,31 @@ export const CortadoCalculator = () => {
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="espresso-input">Espresso (g):</label>
+            <label htmlFor="espresso-input">Espresso (oz):</label>
             <Input 
               id="espresso-input"
               type="number" 
-              value={espressoGrams} 
+              value={espressoOz} 
               onChange={(e) => updateValues('espresso', Number(e.target.value))}
+              step="0.25"
+              min="1"
+              max="3"
             />
           </div>
           <div>
-            <label htmlFor="milk-input">Milk (g):</label>
+            <label htmlFor="steamedMilk-input">Steamed Milk (oz):</label>
             <Input 
-              id="milk-input"
+              id="steamedMilk-input"
               type="number" 
-              value={milkGrams} 
-              onChange={(e) => updateValues('milk', Number(e.target.value))}
+              value={steamedMilkOz} 
+              onChange={(e) => updateValues('steamedMilk', Number(e.target.value))}
+              step="0.25"
+              min="1"
+              max="3"
             />
           </div>
         </div>
-        <div className="mt-4">
-          <label htmlFor="shots-slider">Espresso Shots: {espressoShots}</label>
-          <Slider
-            id="shots-slider"
-            min={1}
-            max={4}
-            step={1}
-            value={[espressoShots]}
-            onValueChange={(value) => updateValues('shots', value[0])}
-          />
-        </div>
-        <p className="mt-4">Total Volume: {totalVolume}ml</p>
+        <p className="mt-4">Total Volume: {totalVolume} oz</p>
       </CardContent>
     </Card>
   )
@@ -87,46 +75,33 @@ export const CortadoCalculator = () => {
 
 ## Ingredients and Equipment
 
-- Freshly roasted espresso beans
+- Espresso (see <Link href="/recipes/espresso">Espresso Recipe</Link>)
 - Whole milk
-- Espresso machine
-- Milk steaming pitcher
-- Small cup (typically 4-5 oz / 120-150 ml)
+- Espresso machine with steam wand
+- Milk pitcher
+- 4-5 oz glass or ceramic cup
 
 ## Steps to Prepare a Cortado
 
 1. **Prepare the espresso**
-   - Grind the coffee beans (typically 18-20g for a double shot)
-   - Tamp and extract a double shot of espresso (about 30ml)
+   - Follow the <Link href="/recipes/espresso">Espresso Recipe</Link> to pull a 2 oz double shot
 
 2. **Steam the milk**
-   - Pour cold milk into a steaming pitcher (about 30-40ml)
-   - Steam the milk to about 140-150°F (60-65°C)
-   - Aim for a velvety microfoam texture, less airy than for a cappuccino
+   - Refer to the <Link href="/recipes/steamed-milk">Steamed Milk Guide</Link> for technique
+   - Steam 2 oz of milk to 140-150°F (60-65°C)
+   - Aim for minimal foam, just enough to create a velvety texture
 
 3. **Combine and serve**
-   - Pour the steamed milk over the espresso
-   - Aim for a 1:1 ratio of espresso to milk
-   - Serve immediately in a small glass or ceramic cup
-
-## Cortado Latte Art
-
-While cortados are often served without elaborate latte art due to their small size, you can still create simple designs:
-
-1. Start with the cup at a slight angle
-2. Pour the milk steadily into the center of the espresso
-3. As the cup fills, bring the pitcher closer to the surface
-4. Make small, gentle movements to create a simple heart or dot pattern
-5. Finish by cutting through the design with a thin stream of milk
+   - Pour the espresso into a 4-5 oz cup
+   - Gently pour the steamed milk over the espresso
+   - Aim for a 1:1 ratio of espresso to steamed milk
 
 ## Tips for the Perfect Cortado
 
-1. **Espresso quality**: Use freshly roasted beans and dial in your grind for optimal extraction
-2. **Milk texture**: Aim for silky, velvety milk with minimal foam
-3. **Temperature**: Serve immediately for the best temperature and flavor balance
-4. **Cup size**: Use the appropriate small cup to maintain the right proportions
-5. **Consistency**: Practice to maintain a consistent ratio and texture in every cortado
+1. **Espresso quality**: Use freshly roasted, high-quality beans and dial in your grind and extraction
+2. **Milk texture**: Focus on creating silky, lightly textured milk without significant foam
+3. **Temperature**: Serve immediately for the best flavor and temperature
+4. **Balance**: Maintain the 1:1 ratio of espresso to steamed milk for a true cortado
+5. **Glassware**: Traditionally served in a small glass to showcase the layers, but ceramic cups are also common in specialty shops
 
-Remember, a cortado is about balance. The equal parts of espresso and milk should complement each other, allowing both the coffee flavors and the creamy texture of the milk to shine through.
-
-</Card>
+Remember, a cortado is about balance and simplicity, allowing both the espresso and the milk to shine without overpowering each other.

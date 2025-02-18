@@ -1,0 +1,91 @@
+'use client';
+
+import { useState, useEffect } from 'react'
+import { Input } from "@/components/ui/input"
+import { Slider } from "@/components/ui/slider"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+# How to Prepare Americano at RU Coffee Bar
+
+Espresso diluted with hot water, similar strength to drip coffee but different flavor profile
+
+## Americano Calculator
+
+export const AmericanoCalculator = () => {
+  const [mainIngredient, setMainIngredient] = useState(30);
+  const [secondaryIngredient, setSecondaryIngredient] = useState(30);
+  const [totalVolume, setTotalVolume] = useState(60);
+
+  useEffect(() => {
+    setTotalVolume(mainIngredient + secondaryIngredient);
+  }, [mainIngredient, secondaryIngredient]);
+
+  const updateValues = (type, value) => {
+    switch(type) {
+      case 'main':
+        setMainIngredient(value);
+        setSecondaryIngredient(value);
+        break;
+      case 'secondary':
+        setSecondaryIngredient(value);
+        setMainIngredient(value);
+        break;
+    }
+  }
+
+  return (
+    <Card className="my-4">
+      <CardHeader>
+        <CardTitle>Americano Recipe Calculator</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="main-input">Main Ingredient (g):</label>
+            <Input 
+              id="main-input"
+              type="number" 
+              value={mainIngredient} 
+              onChange={(e) => updateValues('main', Number(e.target.value))}
+            />
+          </div>
+          <div>
+            <label htmlFor="secondary-input">Secondary Ingredient (g):</label>
+            <Input 
+              id="secondary-input"
+              type="number" 
+              value={secondaryIngredient} 
+              onChange={(e) => updateValues('secondary', Number(e.target.value))}
+            />
+          </div>
+        </div>
+        <p className="mt-4">Total Volume: {totalVolume}ml</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+<AmericanoCalculator />
+
+## Ingredients and Equipment
+
+- Espresso, hot water
+
+## Steps to Prepare Americano
+
+1. **Prepare the main ingredient**
+   - [Add specific steps here]
+
+2. **Prepare the secondary ingredient**
+   - [Add specific steps here]
+
+3. **Combine and serve**
+   - [Add specific steps here]
+
+## Tips for the Perfect Americano
+
+1. **Ingredient quality**: Use high-quality ingredients for the best flavor
+2. **Temperature**: Serve at the appropriate temperature for the best experience
+3. **Consistency**: Practice to maintain a consistent ratio and texture
+
+Remember, perfecting your Americano is a journey. Keep experimenting and refining your technique!

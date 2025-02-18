@@ -80,6 +80,7 @@ const data: { navMain: Navigation[] } = {
     },
   ],
 };
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [currentPath, setCurrentPath] = React.useState<string | null>(null);
 
