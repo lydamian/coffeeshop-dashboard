@@ -26,7 +26,7 @@ export const EspressoCalculator = () => {
       case 'time':
         setTime(value);
         // Optionally, you could adjust yield based on time change
-        // setEspressoYield(Math.round(value / 0.75));
+        setEspressoYield(Math.round(value / 0.75));
         break;
     }
   }
