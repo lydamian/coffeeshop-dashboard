@@ -1,0 +1,11 @@
+Hi I am using nextjs, typescript, tailwindcss, shadcdnui, mdx
+for an internal tools app for training barista's in a specialty coffee shop
+called ru coffee bar.
+
+Help me make a generic component that will essentially be a ratio calculator
+for different coffee drinks.
+
+I want the behavior to be like so for example
+
+it should take all inputs and ratios and output a calculator UI where any changes to one input should automatically trigger changes to all the other variables
+in a ratio formula given. Remember inputs can have different units of measurement

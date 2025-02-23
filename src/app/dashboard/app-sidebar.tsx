@@ -97,8 +97,13 @@ const data: { navMain: Navigation[] } = {
           icon: () => <span>☕</span>,
         },
         {
-          name: "Black Sugar Latte",
-          href: "/recipes/black-sugar-latte",
+          name: "Hot Black Sugar Latte",
+          href: "/recipes/hot-black-sugar-latte",
+          icon: () => <span>☕</span>,
+        },
+        {
+          name: "Iced Black Sugar Latte",
+          href: "/recipes/iced-black-sugar-latte",
           icon: () => <span>☕</span>,
         },
         {

@@ -1,0 +1,89 @@
+# Hot Black Sugar Latte
+
+## About the Drink
+
+The Hot Black Sugar Latte is a delightful twist on the classic latte, combining rich espresso with the deep, caramel-like sweetness of black sugar and velvety steamed milk. This drink offers a unique flavor profile that has been gaining popularity in specialty coffee shops across America.
+
+### History
+Originating from East Asian coffee culture, particularly Taiwan, the black sugar latte trend has made its way to the United States in recent years. It offers a less processed alternative to traditional sugar syrups, appealing to health-conscious coffee enthusiasts.
+
+### Ingredients
+- Espresso
+- Black sugar syrup
+- Steamed milk
+
+### Flavor Profile
+Expect a harmonious blend of bitter espresso, creamy milk, and the complex sweetness of black sugar. The drink offers notes of caramel and molasses, with a smooth, velvety texture and a balanced sweetness that doesn't overpower the coffee.
+
+### Popularity
+As of 2023, the Hot Black Sugar Latte has seen a 25% increase in orders across specialty coffee shops in major U.S. cities, reflecting a growing interest in unique, artisanal coffee beverages.
+
+## Ingredients and Tools
+
+### Ingredients
+- Freshly ground espresso beans
+- Black sugar syrup
+- Whole milk (or alternative milk of choice)
+
+### Tools
+- Espresso machine
+- Milk steaming pitcher
+- Thermometer
+- 12 oz ceramic mug
+- Shot glasses for espresso
+- Precision scale
+- Stirring spoon
+
+## Recipe Calculator
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const BlackSugarLatteRecipe = () => {
+  const recipe = {
+    title: "Hot Black Sugar Latte Recipe",
+    ingredients: [
+      { name: "Espresso", value: 2, unit: "oz", ratio: 1 },
+      { name: "Black Sugar Syrup", value: 19, unit: "g", ratio: 9.5 },
+      { name: "Steamed Milk", value: 7, unit: "oz", ratio: 3.5 },
+      { name: "Total Yield", value: 10, unit: "oz", ratio: 5 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Recipe Calculator</h2>
+      <RatioCalculator {...recipe} />
+    </div>
+  );
+};
+
+<BlackSugarLatteRecipe />
+
+## Preparation Steps
+
+1. Grind coffee beans for a double shot of espresso (about 18-20 grams).
+2. Pull a double shot of espresso (2 oz) into a shot glass.
+3. In a 12 oz mug, add 19 grams of black sugar syrup.
+4. Pour the freshly pulled espresso over the black sugar syrup and stir to combine.
+5. Steam 7 oz of milk to 150-160°F (65-70°C), creating a velvety microfoam.
+6. Slowly pour the steamed milk into the mug, starting from a height to cut through the espresso, then lowering the pitcher to create latte art if desired.
+7. The final drink should yield approximately 10 oz.
+8. Serve immediately.
+
+## Troubleshooting
+
+1. **Drink is too sweet**: Reduce the amount of black sugar syrup or increase the espresso quantity slightly.
+
+2. **Syrup doesn't mix well**: Ensure the espresso is hot and stir thoroughly before adding milk.
+
+3. **Inconsistent flavor**: Use a precision scale to measure the black sugar syrup accurately.
+
+4. **Latte art doesn't form**: Check milk steaming technique, ensure proper microfoam consistency, and practice pouring technique.
+
+5. **Espresso tastes bitter or sour**: Adjust grind size and extraction time. Aim for a 25-30 second extraction for the double shot.
+
+6. **Milk tastes burnt**: Lower steaming temperature slightly and avoid overheating.
+
+7. **Drink is too cold**: Preheat the mug with hot water before preparing the drink.
+
+Remember, consistency is key in specialty coffee. Always measure ingredients precisely and pay attention to temperatures and timings to ensure a high-quality Hot Black Sugar Latte every time.

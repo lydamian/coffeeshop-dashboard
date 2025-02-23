@@ -56,11 +56,19 @@
     "category": "Signature Drinks"
   },
   {
-    "name": "Black Sugar Latte",
-    "key": "black-sugar-latte",
+    "name": "Iced Black Sugar Latte",
+    "key": "iced-black-sugar-latte",
     "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
     "ingredients": "Espresso, steamed milk, black sugar syrup",
-    "tags": ["sweet", "rich", "caramel"],
+    "tags": ["hot", "sweet", "rich", "caramel"],
+    "category": "Signature Drinks"
+  },
+  {
+    "name": "Hot Black Sugar Latte",
+    "key": "hot-black-sugar-latte",
+    "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
+    "ingredients": "Espresso, steamed milk, black sugar syrup",
+    "tags": ["iced", "sweet", "rich", "caramel"],
     "category": "Signature Drinks"
   },
   {
