@@ -1,0 +1,59 @@
+# Hot Tie Guan Yin Tea
+
+Hot Tie Guan Yin Tea, a premium Chinese oolong, offers a luxurious tea experience. Originating from Fujian province, this "Iron Goddess of Mercy" tea has been cherished for centuries and has gained popularity in American specialty tea shops over the past decade. Known for its complex flavor profile, it presents floral notes reminiscent of orchids, a creamy texture, and a sweet aftertaste. Made simply with high-quality Tie Guan Yin leaves and hot water, it exemplifies the art of pure tea appreciation. As of 2023, specialty oolong teas have seen a 20% increase in orders at upscale cafes across major U.S. cities, with Tie Guan Yin being a frontrunner in this trend.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const HotTieGuanYinRecipe = () => {
+  const recipe = {
+    title: "Hot Tie Guan Yin Tea Recipe",
+    ingredients: [
+      { name: "Tie Guan Yin Leaves", value: 5, unit: "g", ratio: 1 },
+      { name: "Hot Water", value: 250, unit: "ml", ratio: 50 },
+      { name: "Total Yield", value: 240, unit: "ml", ratio: 48 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...recipe} />
+    </div>
+  );
+};
+
+<HotTieGuanYinRecipe />
+
+## Ingredients and Equipment
+
+### Ingredients:
+- Tie Guan Yin oolong tea leaves
+- Filtered water
+
+### Equipment:
+- Scale
+- Electric kettle with temperature control
+- Teapot or Gaiwan (120-150 ml capacity)
+- Timer
+- Serving cup
+- Tea strainer (if not using a Gaiwan)
+
+## Preparation Steps
+
+1. Heat water to 195°F (90°C).
+2. Weigh out 5 grams of Tie Guan Yin tea leaves.
+3. Rinse the teapot or Gaiwan with hot water to preheat it.
+4. Place the tea leaves in the teapot or Gaiwan.
+5. Pour 250 ml of the heated water over the leaves.
+6. Steep for 2 minutes.
+7. Strain the tea into the serving cup if using a teapot, or pour directly from the Gaiwan.
+8. Optional: Reserve the leaves for multiple infusions, increasing steeping time by 30 seconds for each subsequent brew.
+
+## Troubleshooting
+
+1. **Tea is too weak**: Increase steeping time by 30 seconds or use more tea leaves.
+2. **Tea is too strong or bitter**: Reduce steeping time or lower water temperature to 185°F (85°C).
+3. **Flavor is flat**: Ensure water is at the correct temperature and tea leaves are fresh.
+4. **Inconsistent flavor between servings**: Use a scale and timer for precise measurements and steeping times.
+5. **Tea cools too quickly**: Preheat the serving cup with hot water before pouring the tea.
+6. **Leaves don't fully open**: Gently stir the leaves once during steeping to encourage full expansion.
+7. **Astringent taste**: Reduce steeping time or amount of leaves used.

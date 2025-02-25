@@ -137,8 +137,13 @@ const data: { navMain: Navigation[] } = {
           icon: () => <span>🍵</span>,
         },
         {
-          name: "Tie Guan Yin",
-          href: "/recipes/tie-guan-yin",
+          name: "Hot Tie Guan Yin",
+          href: "/recipes/hot-tie-guan-yin",
+          icon: () => <span>🍵</span>,
+        },
+        {
+          name: "Iced Tie Guan Yin",
+          href: "/recipes/iced-tie-guan-yin",
           icon: () => <span>🍵</span>,
         },
         {

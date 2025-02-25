@@ -1,0 +1,64 @@
+# Iced Tie Guan Yin Tea
+
+Iced Tie Guan Yin Tea offers a refreshing twist on this premium Chinese oolong. Originating from Fujian province, Tie Guan Yin (Iron Goddess of Mercy) has been cherished for centuries and is gaining popularity in American specialty tea shops. This iced version preserves the tea's characteristic floral notes, slight creaminess, and smooth finish while providing a cooling experience. Brewed hot and then chilled over ice, it delivers a robust flavor profile. Made with just Tie Guan Yin leaves, hot water, and ice, it exemplifies simplicity and quality. As of 2023, iced oolong teas have seen a 25% increase in orders at specialty cafes across major U.S. cities, with Tie Guan Yin leading this trend.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const IcedTieGuanYinRecipe = () => {
+  const recipe = {
+    title: "Iced Tie Guan Yin Tea Recipe",
+    ingredients: [
+      { name: "Tie Guan Yin Leaves", value: 6, unit: "g", ratio: 1 },
+      { name: "Hot Water", value: 200, unit: "g", ratio: 33.33 },
+      { name: "Total Yield", value: 9, unit: "oz", ratio: 1.5 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...recipe} />
+    </div>
+  );
+};
+
+<IcedTieGuanYinRecipe />
+
+## Ingredients and Equipment
+
+### Ingredients:
+- Tie Guan Yin oolong tea leaves
+- Filtered hot water (195°F/90°C)
+- Ice
+
+### Equipment:
+- Scale (capable of measuring grams)
+- Electric kettle with temperature control
+- Brewing vessel (teapot or large mug)
+- Timer
+- Fine-mesh strainer
+- 12 oz cold cup for serving
+- Ice scoop
+
+## Preparation Steps
+
+1. Heat water to 195°F (90°C).
+2. Weigh out 6 grams of Tie Guan Yin tea leaves.
+3. Place the leaves in the brewing vessel.
+4. Measure 200 grams of hot water and pour over the leaves.
+5. Steep for 3 minutes.
+6. While tea is steeping, add ice to a 12 oz serving cup.
+7. After steeping, strain the hot tea directly over the ice in the serving cup.
+8. Stir gently to chill the tea and partially melt the ice.
+9. Add more ice if needed to reach the 9 oz total yield.
+10. Optionally, garnish with a lemon slice or a sprig of mint.
+
+## Troubleshooting
+
+1. **Tea is too weak**: Increase steeping time by 30 seconds or use more tea leaves.
+2. **Tea is too strong**: Reduce steeping time or use fewer tea leaves.
+3. **Bitter taste**: Lower water temperature to 185°F (85°C) or reduce steeping time.
+4. **Not cold enough**: Ensure you're using enough ice initially.
+5. **Too diluted**: Use less ice initially or brew the tea slightly stronger.
+6. **Inconsistent flavor between batches**: Use a scale for precise measurements of both tea leaves and water.
+7. **Tea tastes flat**: Use high-quality filtered water and ensure tea leaves are fresh.
+8. **Final yield is off**: Adjust the amount of ice used to achieve the 9 oz total yield.

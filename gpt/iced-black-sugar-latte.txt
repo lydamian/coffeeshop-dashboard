@@ -4,7 +4,7 @@ called ru coffee bar.
 
 But please make the default values, the normal values for a specialty coffee shop in America.
 
-Help me create a mdx file for:
+Help me create a mdx file for: iced black sugar latte
 
 I want the flow of the page to be like so..
 
@@ -48,6 +48,8 @@ const CoffeeRecipePage = () => {
     </div>
   );
 };
+
+the actual variables will be black sugar syrup 19grams, espresso 2oz (double shot), then fill the rest with milk to get a 9oz total
 
 export default CoffeeRecipePage;
 

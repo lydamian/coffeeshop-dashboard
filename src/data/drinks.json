@@ -24,8 +24,16 @@
     "category": "Coffee"
   },
   {
-    "name": "Latte",
-    "key": "latte",
+    "name": "Hot Latte",
+    "key": "hot-latte",
+    "description": "Espresso with steamed milk and a small layer of milk foam on top",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["creamy", "mild", "popular"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Iced Latte",
+    "key": "iced-latte",
     "description": "Espresso with steamed milk and a small layer of milk foam on top",
     "ingredients": "Espresso, steamed milk, milk foam",
     "tags": ["creamy", "mild", "popular"],
@@ -48,8 +56,16 @@
     "category": "Signature Drinks"
   },
   {
-    "name": "Vanilla Latte",
-    "key": "vanilla-latte",
+    "name": "Hot Vanilla Latte",
+    "key": "hot-vanilla-latte",
+    "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
+    "ingredients": "Espresso, steamed milk, vanilla syrup",
+    "tags": ["sweet", "aromatic", "popular"],
+    "category": "Signature Drinks"
+  },
+  {
+    "name": "Iced Vanilla Latte",
+    "key": "iced-vanilla-latte",
     "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
     "ingredients": "Espresso, steamed milk, vanilla syrup",
     "tags": ["sweet", "aromatic", "popular"],
@@ -80,8 +96,16 @@
     "category": "Non Coffee"
   },
   {
-    "name": "Black Sugar Hojicha Latte",
-    "key": "black-sugar-hojicha-latte",
+    "name": "Hot Black Sugar Hojicha Latte",
+    "key": "hot-black-sugar-hojicha-latte",
+    "description": "Roasted green tea latte sweetened with black sugar syrup",
+    "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
+    "tags": ["roasted", "sweet", "Japanese-inspired"],
+    "category": "Non Coffee"
+  },
+  {
+    "name": "Iced Black Sugar Hojicha Latte",
+    "key": "iced-black-sugar-hojicha-latte",
     "description": "Roasted green tea latte sweetened with black sugar syrup",
     "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
     "tags": ["roasted", "sweet", "Japanese-inspired"],
@@ -96,15 +120,23 @@
     "category": "Non Coffee"
   },
   {
-    "name": "Matcha Latte",
-    "key": "matcha-latte",
+    "name": "Hot Matcha Latte",
+    "key": "hot-matcha-latte",
     "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
     "ingredients": "Matcha powder, steamed milk",
     "tags": ["earthy", "Japanese", "antioxidant-rich"],
     "category": "Matcha"
   },
   {
-    "name": "Zesty Matcha Latte",
+    "name": "Iced Matcha Latte",
+    "key": "iced-matcha-latte",
+    "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
+    "ingredients": "Matcha powder, steamed milk",
+    "tags": ["earthy", "Japanese", "antioxidant-rich"],
+    "category": "Matcha"
+  },
+  {
+    "name": "Zesty Matcha Latte (Iced only)",
     "key": "zesty-matcha-latte",
     "description": "Matcha latte with a hint of citrus zest for a bright, refreshing twist",
     "ingredients": "Matcha powder, steamed milk, citrus zest",
@@ -112,32 +144,64 @@
     "category": "Matcha"
   },
   {
-    "name": "Jasmine Matcha Latte",
-    "key": "jasmine-matcha-latte",
+    "name": "Hot Jasmine Matcha Latte",
+    "key": "hot-jasmine-matcha-latte",
     "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
     "ingredients": "Matcha powder, jasmine tea, steamed milk",
     "tags": ["floral", "aromatic", "soothing"],
     "category": "Matcha"
   },
   {
-    "name": "Tie Guan Yin",
-    "key": "tie-guan-yin",
+    "name": "Iced Jasmine Matcha Latte",
+    "key": "iced-jasmine-matcha-latte",
+    "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
+    "ingredients": "Matcha powder, jasmine tea, steamed milk",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Matcha"
+  },
+  {
+    "name": "Hot Tie Guan Yin",
+    "key": "iced-tie-guan-yin",
     "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
     "ingredients": "Tie Guan Yin tea leaves, hot water",
     "tags": ["oolong", "floral", "premium"],
     "category": "Loose leaf tea"
   },
   {
-    "name": "Jasmine Jixuan",
-    "key": "jasmine-jixuan",
+    "name": "Iced Tie Guan Yin",
+    "key": "hot-tie-guan-yin",
+    "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
+    "ingredients": "Tie Guan Yin tea leaves, hot water",
+    "tags": ["oolong", "floral", "premium"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "Hot Jasmine Jixuan",
+    "key": "hot-jasmine-jixuan",
     "description": "A delicate green tea scented with jasmine flowers",
     "ingredients": "Jasmine Jixuan tea leaves, hot water",
     "tags": ["floral", "aromatic", "soothing"],
     "category": "Loose leaf tea"
   },
   {
-    "name": "High Mountain Oolong Tea",
-    "key": "high-mountain-oolong-tea",
+    "name": "Iced Jasmine Jixuan",
+    "key": "iced-jasmine-jixuan",
+    "description": "A delicate green tea scented with jasmine flowers",
+    "ingredients": "Jasmine Jixuan tea leaves, hot water",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "Hot High Mountain Oolong Tea",
+    "key": "hot-high-mountain-oolong-tea",
+    "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
+    "ingredients": "High mountain oolong tea leaves, hot water",
+    "tags": ["floral", "light", "premium"],
+    "category": "Loose leaf tea"
+  },
+  {
+    "name": "Iced High Mountain Oolong Tea",
+    "key": "iced-mountain-oolong-tea",
     "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
     "ingredients": "High mountain oolong tea leaves, hot water",
     "tags": ["floral", "light", "premium"],
@@ -163,6 +227,14 @@
     "name": "Milk",
     "key": "milk",
     "description": "Pure, cold milk served as a refreshing and nutritious drink",
+    "ingredients": "Milk",
+    "tags": ["simple", "nutritious", "kid-friendly"],
+    "category": "For kids"
+  },
+  {
+    "name": "Steamed Milk",
+    "key": "steamed-milk",
+    "description": "Steamed milk served as a refreshing and nutritious drink with a creamy and natural sweetness",
     "ingredients": "Milk",
     "tags": ["simple", "nutritious", "kid-friendly"],
     "category": "For kids"
