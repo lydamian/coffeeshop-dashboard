@@ -176,6 +176,26 @@ const data: { navMain: Navigation[] } = {
           href: "/recipes/steamed-milk",
           icon: () => <span>🥛</span>,
         },
+        {
+          name: "Simple syrup",
+          href: "/recipes/simple-syrup",
+          icon: () => <span>🍯</span>,
+        },
+        {
+          name: "Vanilla syrup",
+          href: "/recipes/vanilla-syrup",
+          icon: () => <span>🍯</span>,
+        },
+        {
+          name: "Black sugar syrup",
+          href: "/recipes/black-sugar-syrup",
+          icon: () => <span>🍯</span>,
+        },
+        {
+          name: "Mixed berry syrup",
+          href: "/recipes/mixed-berry-syrup",
+          icon: () => <span>🍯</span>,
+        },
       ],
     },
   ],
