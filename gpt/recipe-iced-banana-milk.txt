@@ -4,7 +4,7 @@ called ru coffee bar.
 
 But please make the default values, the normal values for a specialty coffee shop in America.
 
-Help me create a mdx file for:
+Help me create a mdx file for: Iced Banana Milk
 
 I want the flow of the page to be like so..
 
@@ -95,7 +95,7 @@ so you can just use it like so
 example!!!!
 import RatioCalculator from '@/components/ratio-calculator.tsx';
 
-export const Calculator = () => {
+const CoffeeRecipePage = () => {
   const espressoRecipe = {
     title: "Espresso Recipe",
     ingredients: [
@@ -112,11 +112,20 @@ export const Calculator = () => {
   );
 };
 
-<Calculator />
+export default CoffeeRecipePage;
+
+the actual values will be
+amount of banana syrup (default) 30g
+amount of milk (fill to 9oz in a measuring cup whatever that is)
+total output should be 9oz
+
+if making for a kid then output should be 6oz
 
 then I want you to include a list of all Ingredients and Equipment
 
 then include the steps to actually make the drink
+
+which will be to put in a measuring cup 30g of banana syrup then fill up to 9oz output
 
 
 then include any common troubleshooting steps

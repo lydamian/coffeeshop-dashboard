@@ -29,6 +29,22 @@ import {
   ChevronUpDownIcon
 } from "@heroicons/react/24/solid"
 
+import drinksData from '@/data/drinks.json'
+
+const recipesNavigation: Navigation = {
+  name: "Recipes",
+  href: "#",
+  icon: BookOpenIcon,
+  children: drinksData.reduce<Navigation[]>((acc, drink) => {
+    acc.push({
+      name: drink.name,
+      href: `/recipes/${drink.key}`,
+      icon: () => <span>{drink.icon}</span>,
+    });
+    return acc;
+  }, [])
+};
+
 type Navigation = {
   name: string;
   href?: string;
@@ -56,153 +72,7 @@ const data: { navMain: Navigation[] } = {
       href: "/menu",
       icon: BookOpenIcon,
     },
-    {
-      name: "Recipes",
-      href: "#",
-      icon: BookOpenIcon,
-      children: [
-        {
-          name: "Espresso",
-          href: "/recipes/espresso",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Cortado",
-          href: "/recipes/cortado",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Cappuccino",
-          href: "/recipes/cappuccino",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Latte",
-          href: "/recipes/latte",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Hot Americano",
-          href: "/recipes/hot-americano",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Iced Americano",
-          href: "/recipes/iced-americano",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Lychee Espresso Tonic",
-          href: "/recipes/lychee-espresso-tonic",
-          icon: () => <span>🍹</span>,
-        },
-        {
-          name: "Vanilla Latte",
-          href: "/recipes/vanilla-latte",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Hot Black Sugar Latte",
-          href: "/recipes/hot-black-sugar-latte",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Iced Black Sugar Latte",
-          href: "/recipes/iced-black-sugar-latte",
-          icon: () => <span>☕</span>,
-        },
-        {
-          name: "Tie Guan Yin Fruit Tea",
-          href: "/recipes/tie-guan-yin-fruit-tea",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Black Sugar Hojicha Latte",
-          href: "/recipes/black-sugar-hojicha-latte",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Berry Fizz",
-          href: "/recipes/berry-fizz",
-          icon: () => <span>🍓</span>,
-        },
-        {
-          name: "Matcha Latte",
-          href: "/recipes/matcha-latte",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Zesty Matcha Latte",
-          href: "/recipes/zesty-matcha-latte",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Jasmine Matcha Latte",
-          href: "/recipes/jasmine-matcha-latte",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Hot Tie Guan Yin",
-          href: "/recipes/hot-tie-guan-yin",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Iced Tie Guan Yin",
-          href: "/recipes/iced-tie-guan-yin",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Jasmine Jixuan",
-          href: "/recipes/jasmine-jixuan",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "High Mountain Oolong Tea",
-          href: "/recipes/high-mountain-oolong-tea",
-          icon: () => <span>🍵</span>,
-        },
-        {
-          name: "Banana Milk",
-          href: "/recipes/banana-milk",
-          icon: () => <span>🍌</span>,
-        },
-        {
-          name: "Strawberry Milk",
-          href: "/recipes/strawberry-milk",
-          icon: () => <span>🍓</span>,
-        },
-        {
-          name: "Milk",
-          href: "/recipes/milk",
-          icon: () => <span>🥛</span>,
-        },
-        {
-          name: "Steamed Milk",
-          href: "/recipes/steamed-milk",
-          icon: () => <span>🥛</span>,
-        },
-        {
-          name: "Simple syrup",
-          href: "/recipes/simple-syrup",
-          icon: () => <span>🍯</span>,
-        },
-        {
-          name: "Vanilla syrup",
-          href: "/recipes/vanilla-syrup",
-          icon: () => <span>🍯</span>,
-        },
-        {
-          name: "Black sugar syrup",
-          href: "/recipes/black-sugar-syrup",
-          icon: () => <span>🍯</span>,
-        },
-        {
-          name: "Mixed berry syrup",
-          href: "/recipes/mixed-berry-syrup",
-          icon: () => <span>🍯</span>,
-        },
-      ],
-    },
+    recipesNavigation,
   ],
 };
 

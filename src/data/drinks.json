@@ -5,7 +5,8 @@
     "description": "A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans",
     "ingredients": "Finely ground coffee beans, hot water",
     "tags": ["strong", "intense", "quick", "classic"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "☕️"
   },
   {
     "name": "Cortado",
@@ -13,7 +14,8 @@
     "description": "Equal parts espresso and steamed milk, creating a balanced and smooth coffee experience",
     "ingredients": "Espresso, steamed milk",
     "tags": ["balanced", "smooth", "Spanish-inspired"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "☕️"
   },
   {
     "name": "Cappuccino",
@@ -21,7 +23,8 @@
     "description": "Equal parts espresso, steamed milk, and milk foam, often dusted with cocoa powder",
     "ingredients": "Espresso, steamed milk, milk foam",
     "tags": ["frothy", "Italian", "breakfast"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "☕️"
   },
   {
     "name": "Hot Latte",
@@ -29,7 +32,8 @@
     "description": "Espresso with steamed milk and a small layer of milk foam on top",
     "ingredients": "Espresso, steamed milk, milk foam",
     "tags": ["creamy", "mild", "popular"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "☕️"
   },
   {
     "name": "Iced Latte",
@@ -37,7 +41,8 @@
     "description": "Espresso with steamed milk and a small layer of milk foam on top",
     "ingredients": "Espresso, steamed milk, milk foam",
     "tags": ["creamy", "mild", "popular"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "🧊☕️"
   },
   {
     "name": "Hot Americano",
@@ -45,7 +50,8 @@
     "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
     "ingredients": "Espresso, hot water",
     "tags": ["diluted", "smooth", "simple", "hot"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "☕️"
   },
   {
     "name": "Iced Americano",
@@ -53,7 +59,8 @@
     "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
     "ingredients": "Espresso, iced water",
     "tags": ["diluted", "smooth", "simple", "iced"],
-    "category": "Coffee"
+    "category": "Coffee",
+    "icon": "🧊☕️"
   },
   {
     "name": "Lychee Espresso Tonic",
@@ -61,7 +68,8 @@
     "description": "A refreshing blend of espresso, tonic water, and lychee syrup over ice",
     "ingredients": "Espresso, tonic water, lychee syrup, ice",
     "tags": ["refreshing", "unique", "summer"],
-    "category": "Signature Drinks"
+    "category": "Signature Drinks",
+    "icon": "🍹"
   },
   {
     "name": "Hot Vanilla Latte",
@@ -69,7 +77,8 @@
     "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
     "ingredients": "Espresso, steamed milk, vanilla syrup",
     "tags": ["sweet", "aromatic", "popular"],
-    "category": "Signature Drinks"
+    "category": "Signature Drinks",
+    "icon": "☕️"
   },
   {
     "name": "Iced Vanilla Latte",
@@ -77,7 +86,8 @@
     "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
     "ingredients": "Espresso, steamed milk, vanilla syrup",
     "tags": ["sweet", "aromatic", "popular"],
-    "category": "Signature Drinks"
+    "category": "Signature Drinks",
+    "icon": "🧊☕️"
   },
   {
     "name": "Iced Black Sugar Latte",
@@ -85,7 +95,8 @@
     "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
     "ingredients": "Espresso, steamed milk, black sugar syrup",
     "tags": ["hot", "sweet", "rich", "caramel"],
-    "category": "Signature Drinks"
+    "category": "Signature Drinks",
+    "icon": "🧊☕️"
   },
   {
     "name": "Hot Black Sugar Latte",
@@ -93,7 +104,8 @@
     "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
     "ingredients": "Espresso, steamed milk, black sugar syrup",
     "tags": ["iced", "sweet", "rich", "caramel"],
-    "category": "Signature Drinks"
+    "category": "Signature Drinks",
+    "icon": "☕️"
   },
   {
     "name": "Tie Guan Yin Fruit Tea",
@@ -101,7 +113,8 @@
     "description": "Oolong tea infused with mixed fruits for a refreshing and fragrant drink",
     "ingredients": "Tie Guan Yin tea, mixed fruits, ice",
     "tags": ["refreshing", "fruity", "iced"],
-    "category": "Non Coffee"
+    "category": "Non Coffee",
+    "icon": "🍵"
   },
   {
     "name": "Hot Black Sugar Hojicha Latte",
@@ -109,7 +122,8 @@
     "description": "Roasted green tea latte sweetened with black sugar syrup",
     "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
     "tags": ["roasted", "sweet", "Japanese-inspired"],
-    "category": "Non Coffee"
+    "category": "Non Coffee",
+    "icon": "🍵"
   },
   {
     "name": "Iced Black Sugar Hojicha Latte",
@@ -117,7 +131,8 @@
     "description": "Roasted green tea latte sweetened with black sugar syrup",
     "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
     "tags": ["roasted", "sweet", "Japanese-inspired"],
-    "category": "Non Coffee"
+    "category": "Non Coffee",
+    "icon": "🧊🍵"
   },
   {
     "name": "Berry Fizz",
@@ -125,7 +140,8 @@
     "description": "A sparkling mixed berry drink, perfect for a refreshing non-caffeinated option",
     "ingredients": "Mixed berry syrup, soda water, ice",
     "tags": ["refreshing", "fruity", "sparkling"],
-    "category": "Non Coffee"
+    "category": "Non Coffee",
+    "icon": "🫐"
   },
   {
     "name": "Hot Matcha Latte",
@@ -133,7 +149,8 @@
     "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
     "ingredients": "Matcha powder, steamed milk",
     "tags": ["earthy", "Japanese", "antioxidant-rich"],
-    "category": "Matcha"
+    "category": "Matcha",
+    "icon": "🍵"
   },
   {
     "name": "Iced Matcha Latte",
@@ -141,7 +158,8 @@
     "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
     "ingredients": "Matcha powder, steamed milk",
     "tags": ["earthy", "Japanese", "antioxidant-rich"],
-    "category": "Matcha"
+    "category": "Matcha",
+    "icon": "🧊🍵"
   },
   {
     "name": "Zesty Matcha Latte (Iced only)",
@@ -149,7 +167,8 @@
     "description": "Matcha latte with a hint of citrus zest for a bright, refreshing twist",
     "ingredients": "Matcha powder, steamed milk, citrus zest",
     "tags": ["zesty", "refreshing", "unique"],
-    "category": "Matcha"
+    "category": "Matcha",
+    "icon": "🍋🍵"
   },
   {
     "name": "Hot Jasmine Matcha Latte",
@@ -157,7 +176,8 @@
     "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
     "ingredients": "Matcha powder, jasmine tea, steamed milk",
     "tags": ["floral", "aromatic", "soothing"],
-    "category": "Matcha"
+    "category": "Matcha",
+    "icon": "🍵"
   },
   {
     "name": "Iced Jasmine Matcha Latte",
@@ -165,7 +185,8 @@
     "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
     "ingredients": "Matcha powder, jasmine tea, steamed milk",
     "tags": ["floral", "aromatic", "soothing"],
-    "category": "Matcha"
+    "category": "Matcha",
+    "icon": "🧊🍵"
   },
   {
     "name": "Hot Tie Guan Yin",
@@ -173,7 +194,8 @@
     "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
     "ingredients": "Tie Guan Yin tea leaves, hot water",
     "tags": ["oolong", "floral", "premium"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🍵"
   },
   {
     "name": "Iced Tie Guan Yin",
@@ -181,7 +203,8 @@
     "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
     "ingredients": "Tie Guan Yin tea leaves, hot water",
     "tags": ["oolong", "floral", "premium"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
   },
   {
     "name": "Hot Jasmine Jixuan",
@@ -189,7 +212,8 @@
     "description": "A delicate green tea scented with jasmine flowers",
     "ingredients": "Jasmine Jixuan tea leaves, hot water",
     "tags": ["floral", "aromatic", "soothing"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🍵"
   },
   {
     "name": "Iced Jasmine Jixuan",
@@ -197,7 +221,8 @@
     "description": "A delicate green tea scented with jasmine flowers",
     "ingredients": "Jasmine Jixuan tea leaves, hot water",
     "tags": ["floral", "aromatic", "soothing"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
   },
   {
     "name": "Hot High Mountain Oolong Tea",
@@ -205,7 +230,8 @@
     "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
     "ingredients": "High mountain oolong tea leaves, hot water",
     "tags": ["floral", "light", "premium"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🍵"
   },
   {
     "name": "Iced High Mountain Oolong Tea",
@@ -213,7 +239,8 @@
     "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
     "ingredients": "High mountain oolong tea leaves, hot water",
     "tags": ["floral", "light", "premium"],
-    "category": "Loose leaf tea"
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
   },
   {
     "name": "Banana Milk",
@@ -221,7 +248,8 @@
     "description": "A sweet and creamy banana-flavored milk drink, perfect for kids",
     "ingredients": "Milk, banana syrup",
     "tags": ["sweet", "creamy", "kid-friendly"],
-    "category": "For kids"
+    "category": "For kids",
+    "icon": "🍌🥛"
   },
   {
     "name": "Strawberry Milk",
@@ -229,7 +257,8 @@
     "description": "A pink, fruity milk drink that's a favorite among children",
     "ingredients": "Milk, strawberry syrup",
     "tags": ["sweet", "fruity", "kid-friendly"],
-    "category": "For kids"
+    "category": "For kids",
+    "icon": "🍓🥛"
   },
   {
     "name": "Milk",
@@ -237,7 +266,8 @@
     "description": "Pure, cold milk served as a refreshing and nutritious drink",
     "ingredients": "Milk",
     "tags": ["simple", "nutritious", "kid-friendly"],
-    "category": "For kids"
+    "category": "For kids",
+    "icon": "🥛"
   },
   {
     "name": "Steamed Milk",
@@ -245,7 +275,8 @@
     "description": "Steamed milk served as a refreshing and nutritious drink with a creamy and natural sweetness",
     "ingredients": "Milk",
     "tags": ["simple", "nutritious", "kid-friendly"],
-    "category": "For kids"
+    "category": "For kids",
+    "icon": "🥛"
   },
   {
     "name": "Simple syrup",
@@ -253,7 +284,8 @@
     "description": "Syrup made with equal parts 100% cane sugar and water, used to sweeten drinks",
     "ingredients": "Cane sugar, water",
     "tags": ["simple", "syrup", "sweet"],
-    "category": "syrup"
+    "category": "syrup",
+    "icon": "🍯"
   },
   {
     "name": "Vanilla syrup",
@@ -261,7 +293,8 @@
     "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
     "ingredients": "Black sugar, water",
     "tags": ["syrup", "sweet"],
-    "category": "syrup"
+    "category": "syrup",
+    "icon": "🍯"
   },
   {
     "name": "Black sugar syrup",
@@ -269,7 +302,8 @@
     "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
     "ingredients": "Black sugar, water",
     "tags": ["syrup", "sweet"],
-    "category": "syrup"
+    "category": "syrup",
+    "icon": "🍯"
   },
   {
     "name": "Mixed berry syrup",
@@ -277,6 +311,7 @@
     "description": "Syrup made with 5:2:1 ratio mixed berry to 100% cane sugar to water, used to sweeten drinks",
     "ingredients": "Mixed Berry, Cane sugar, water",
     "tags": ["syrup", "sweet"],
-    "category": "syrup"
+    "category": "syrup",
+    "icon": "🫐🍯"
   }
 ]
