@@ -88,20 +88,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const renderMenuButton = (item: Navigation) => {
     const content = (
       <>
-        {item.icon && <item.icon className="mr-2 h-5 w-5" />}
-        {item.name}
+        {item.icon && <item.icon className="mr-2 h-8 w-5 my-2 flex-shrink-0" />}
+        <span className="flex-grow">{item.name}</span>
       </>
     );
 
     if (item.href) {
       return (
-        <a href={item.href} className="flex items-center font-medium">
+        <a href={item.href} className="my-2 flex items-center font-medium">
           {content}
         </a>
       );
     } else {
       return (
-        <span className="flex items-center font-medium cursor-default">
+        <span className="my-2 flex items-center font-medium cursor-default">
           {content}
         </span>
       );
@@ -140,7 +140,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  className="
+                    data-[state=open]:bg-sidebar-accent
+                    data-[state=open]:text-sidebar-accent-foreground
+                  "
                 >
                   <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                     <GalleryVerticalEnd className="size-4" />
@@ -160,9 +163,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.name}>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild className="whitespace-normal py-2 leading-tight">
                   {renderMenuButton(item)}
                 </SidebarMenuButton>
+
                 {item.children?.length ? (
                   <SidebarMenuSub>
                     {item.children.map((subItem) => (
@@ -170,9 +174,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         <SidebarMenuSubButton
                           asChild
                           isActive={currentPath === subItem.href}
+                          className="whitespace-normal py-1 leading-tight"
                         >
                           {renderSubMenuButton(subItem)}
                         </SidebarMenuSubButton>
+
                       </SidebarMenuSubItem>
                     ))}
                   </SidebarMenuSub>
