@@ -135,8 +135,8 @@
     "icon": "🧊🍵"
   },
   {
-    "name": "Berry Fizz",
-    "key": "berry-fizz",
+    "name": "Iced Berry Fizz",
+    "key": "iced-berry-fizz",
     "description": "A sparkling mixed berry drink, perfect for a refreshing non-caffeinated option",
     "ingredients": "Mixed berry syrup, soda water, ice",
     "tags": ["refreshing", "fruity", "sparkling"],

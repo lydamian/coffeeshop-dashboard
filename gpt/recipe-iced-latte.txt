@@ -4,7 +4,7 @@ called ru coffee bar.
 
 But please make the default values, the normal values for a specialty coffee shop in America.
 
-Help me create a mdx file for:
+Help me create a mdx file for: Iced Latte
 
 I want the flow of the page to be like so..
 
@@ -114,7 +114,8 @@ export const Calculator = () => {
 
 <Calculator />
 
-@TODO: the actual variables are:
+The actual variables should be amount of esspresso (2oz or 2 shots)
+then fill milk for a total of a 9oz total in a measuring cup
 
 then I want you to include a list of all Ingredients and Equipment
 

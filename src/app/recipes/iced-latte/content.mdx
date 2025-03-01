@@ -1,116 +1,70 @@
-import { useState, useEffect } from 'react'
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from 'next/link'
+# Iced Latte
 
-# How to Prepare a Latte at RU Coffee Bar
+The Iced Latte is a refreshing espresso-based drink that has become a staple in American coffee shops. Originating in the 1980s as a chilled version of the classic latte, it combines the rich flavor of espresso with cold milk and ice. Made with espresso and cold milk, then served over ice, it offers a smooth, creamy taste with a strong coffee kick. The drink's flavor profile is characterized by a balanced blend of bold espresso and creamy milk, with the coolness of ice enhancing its refreshing quality. In many American specialty coffee shops, Iced Lattes account for approximately 20-25% of cold coffee drink orders, especially during warmer months.
 
-A latte is a popular espresso-based drink consisting of espresso and steamed milk, topped with a small layer of milk foam. It's known for its creamy texture and mild coffee flavor.
+import RatioCalculator from '@/components/ratio-calculator.tsx';
 
-## Latte Calculator
-
-export const LatteCalculator = () => {
-  const [espressoOz, setEspressoOz] = useState(2);
-  const [steamedMilkOz, setSteamedMilkOz] = useState(8);
-  const [totalVolume, setTotalVolume] = useState(steamedMilkOz + espressoOz);
-
-  useEffect(() => {
-    setTotalVolume(espressoOz + steamedMilkOz);
-  }, [espressoOz, steamedMilkOz]);
-
-  const updateValues = (type, value) => {
-    switch(type) {
-      case 'espresso':
-        setEspressoOz(value);
-        setSteamedMilkOz(10 - value);
-        break;
-      case 'steamedMilk':
-        setSteamedMilkOz(value);
-        setEspressoOz(10 - value);
-        break;
-    }
-  }
+export const Calculator = () => {
+  const icedLatteRecipe = {
+    title: "Iced Latte Recipe",
+    ingredients: [
+      { name: "Espresso", value: 2, unit: "oz", ratio: 1 },
+      { name: "Milk", value: 7, unit: "oz", ratio: 3.5 },
+      { name: "Total Yield", value: 9, unit: "oz", ratio: 4.5 },
+    ]
+  };
 
   return (
-    <Card className="my-4">
-      <CardHeader>
-        <CardTitle>Latte Recipe Calculator</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="espresso-input">Espresso (oz):</label>
-            <Input 
-              id="espresso-input"
-              type="number" 
-              value={espressoOz} 
-              onChange={(e) => updateValues('espresso', Number(e.target.value))}
-              step="0.25"
-              min="1"
-              max="3"
-            />
-          </div>
-          <div>
-            <label htmlFor="steamedMilk-input">Steamed Milk (oz):</label>
-            <Input 
-              id="steamedMilk-input"
-              type="number" 
-              value={steamedMilkOz} 
-              onChange={(e) => updateValues('steamedMilk', Number(e.target.value))}
-              step="0.25"
-              min="9"
-              max="11"
-            />
-          </div>
-        </div>
-        <p className="mt-4">Total Volume: {totalVolume} oz</p>
-        <p className="mt-2">Milk Foam: Approximately 0.5 oz on top</p>
-      </CardContent>
-    </Card>
-  )
-}
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...icedLatteRecipe} />
+    </div>
+  );
+};
 
-<LatteCalculator />
+<Calculator />
 
 ## Ingredients and Equipment
 
-- Espresso (see <Link href="/recipes/espresso">Espresso Recipe</Link>)
-- Whole milk
-- Espresso machine with steam wand
-- Milk pitcher
-- 10 oz latte cup
+Ingredients:
+- Espresso beans
+- Cold milk (whole, 2%, or alternative milk)
+- Ice cubes
 
-## Steps to Prepare a Latte
+Equipment:
+- Espresso machine
+- Grinder
+- Scale
+- Shot glasses or espresso cups
+- 12-16 oz serving cup (to accommodate ice)
+- Measuring cup
+- Ice scoop
+- Long spoon for stirring (optional)
 
-1. **Prepare the espresso**
-   - Follow the <Link href="/recipes/espresso">Espresso Recipe</Link> to pull a 2 oz double shot
+## Steps to Make an Iced Latte
 
-2. **Steam the milk**
-   - Refer to the <Link href="/recipes/steamed-milk">Steamed Milk Guide</Link> for technique
-   - Steam about 10 oz of milk to 150-160°F (65-71°C)
-   - Create a smooth, velvety microfoam
+1. Prepare the serving glass by filling it about 2/3 full with ice.
+2. Grind the espresso beans fresh for a double shot (about 18-20g).
+3. Pull a double shot of espresso (2 oz) using your espresso machine.
+4. In a measuring cup, add the freshly brewed espresso.
+5. Add cold milk to the measuring cup until it reaches the 9 oz mark.
+6. Stir gently to combine the espresso and milk.
+7. Pour the mixture over the ice in the serving glass.
+8. Serve immediately, optionally with a straw.
 
-3. **Combine and serve**
-   - Pour the espresso into a 10 oz latte cup
-   - Gently pour the steamed milk over the espresso, allowing a small layer of foam to form on top
-   - Aim for a ratio of 1/6 espresso to 5/6 steamed milk
+## Troubleshooting
 
-## Latte Art
+1. Weak coffee flavor: Ensure you're using the correct amount of espresso (2 oz). If still weak, try using a darker roast or adjusting your grind size for a stronger extraction.
 
-Latte art is a hallmark of specialty coffee shops:
+2. Too strong: If the coffee taste is overpowering, add a little more milk or use less espresso in future preparations.
 
-1. Start with the cup at a slight angle
-2. Pour the milk steadily into the center of the espresso
-3. As the cup fills, bring the pitcher closer to the surface
-4. Create patterns by moving the pour in a steady motion
-5. Finish with a gentle cut through for more intricate designs
+3. Milk curdling: This can happen if the espresso is too hot when mixed with cold milk. Let the espresso cool slightly before combining with milk, or try pouring the milk over the ice first, then adding the espresso.
 
-## Tips for the Perfect Specialty Latte
+4. Inconsistent taste: Standardize your process by using a scale to measure your espresso and a measuring cup for the milk. Ensure your espresso shots are consistent in volume and extraction time.
 
-1. **Espresso quality**: Use freshly roasted, high-quality beans and dial in your grind and extraction
-2. **Milk texture**: Focus on creating silky, velvety microfoam without large bubbles
-3. **Temperature**: Serve immediately for the best flavor and latte art potential
-4. **Balance**: Maintain the correct ratio of espresso to milk for a balanced flavor
-5. **Consistency**: Practice your milk steaming and pouring techniques regularly
+5. Drink is too watery: Use larger ice cubes that melt more slowly, or slightly reduce the amount of milk to account for ice melt.
 
-Remember, a great latte is about the harmony between the espresso and the silky steamed milk, with the latte art as the finishing touch.
+6. Layered drink instead of mixed: If you prefer a more uniform mixture, stir the drink gently after pouring. If you like the layered look, pour the milk over the back of a spoon onto the espresso.
+
+7. Temperature issues: If the drink isn't cold enough, pre-chill your serving glass or use cold milk straight from the refrigerator.
+
+8. Foam problems: If you want a bit of foam on top, you can shake the milk in a cocktail shaker with ice before pouring, or use a milk frother to create cold foam to top the drink.
