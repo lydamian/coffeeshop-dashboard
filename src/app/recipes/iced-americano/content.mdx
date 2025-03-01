@@ -1,0 +1,75 @@
+# Iced Americano
+
+The Iced Americano is a refreshing espresso-based beverage that combines the robust flavor of espresso with chilled water and ice. Originating as a cooler alternative to the traditional Americano, it's perfect for warm days. Made with a double shot of espresso and cold water over ice, it maintains the rich, bold taste of espresso while offering a crisp, invigorating experience. In many specialty coffee shops across America, the Iced Americano is a popular choice, accounting for about 15% of iced coffee orders.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const IcedAmericanoRecipe = () => {
+  const icedAmericanoRecipe = {
+    title: "Iced Americano Recipe",
+    ingredients: [
+      { name: "Espresso", value: 2, unit: "oz", ratio: 1 },
+      { name: "Cold Water", value: 6, unit: "oz", ratio: 3 },
+      { name: "Total Yield", value: 8, unit: "oz", ratio: 4 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...icedAmericanoRecipe} />
+    </div>
+  );
+};
+
+<IcedAmericanoRecipe />
+
+## Ingredients and Equipment
+
+**Ingredients:**
+- Espresso beans
+- Filtered water
+- Ice cubes
+
+**Equipment:**
+- Espresso machine
+- Coffee grinder
+- Scale
+- Measuring cup
+- 8 oz serving glass
+- Spoon
+
+## Steps to Make the Iced Americano
+
+1. **Prepare the Serving Glass:**
+   - Fill an 8 oz serving glass with ice cubes, about halfway.
+   - Pour 6 oz of cold, filtered water over the ice.
+
+2. **Make the Espresso:**
+   - Grind fresh espresso beans to a fine consistency (about 18-20 grams for a double shot).
+   - Tamp the grounds evenly in the portafilter.
+   - Pull a double shot of espresso (2 oz) using the espresso machine.
+
+3. **Combine and Serve:**
+   - Pour the hot espresso into a measuring cup to prevent shocking the glass.
+   - Gently pour the espresso over the iced water in the serving glass.
+   - Stir gently if needed.
+   - Serve immediately.
+
+## Troubleshooting
+
+1. **Drink Tastes Too Diluted:**
+   - Reduce the amount of cold water or increase the espresso volume.
+
+2. **Espresso Is Bitter or Sour:**
+   - Check the extraction time; aim for 25-30 seconds.
+   - Adjust the grind size finer or coarser as needed.
+
+3. **Ice Melts Too Quickly:**
+   - Use larger ice cubes or more ice to keep the drink chilled longer.
+   - Chill the espresso before combining if time allows.
+
+4. **Layering Doesn't Occur:**
+   - For aesthetic layering, pour the espresso slowly over the back of a spoon onto the iced water.
+
+5. **Weak Flavor:**
+   - Ensure you're using freshly roasted beans and the correct coffee-to-water ratio.

@@ -1,0 +1,61 @@
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+# Hot Americano
+
+The Americano is a classic espresso-based drink that originated during World War II when American soldiers in Italy diluted espresso to mimic the coffee they were used to back home. It's made by adding hot water to espresso, resulting in a drink with the strength of drip coffee but with the rich flavor profile of espresso. The Americano is known for its bold taste, subtle crema, and versatility. It's a popular choice for those who enjoy the essence of espresso but prefer a larger, less intense drink. In many specialty coffee shops across America, the Americano accounts for about 20% of espresso-based drink orders.
+
+
+export const AmericanoRecipe = () => {
+  const americanoRecipe = {
+    title: "Hot Americano Recipe",
+    ingredients: [
+      { name: "Espresso", value: 2, unit: "oz", ratio: 1 },
+      { name: "Hot Water", value: 6, unit: "oz", ratio: 3 },
+      { name: "Total Yield", value: 8, unit: "oz", ratio: 4 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...americanoRecipe} />
+    </div>
+  );
+};
+
+<AmericanoRecipe />
+
+## Ingredients and Equipment
+
+Ingredients:
+- Espresso beans
+- Filtered water
+
+Equipment:
+- Espresso machine
+- Grinder
+- Scale
+- Shot glasses or espresso cups
+- 8 oz serving cup
+- Thermometer (optional)
+
+## Steps to Make a Hot Americano
+
+1. (Optional) Preheat the serving cup with hot water, then discard the water.
+2. Grind the espresso beans fresh for a double shot (about 18-20g).
+3. Prepare the espresso machine and pull a double shot (2 oz) of espresso.
+4. Heat 6 oz of water to about 185°F (85°C).
+5. Pour the hot water into the preheated serving cup.
+6. Gently pour the espresso over the hot water.
+7. Serve immediately.
+
+## Troubleshooting
+
+1. Weak flavor: Ensure you're using the correct ratio of water to espresso. Try using less water or a stronger espresso shot.
+
+2. Too bitter: The water might be too hot. Aim for water temperature between 175-185°F (80-85°C).
+
+3. No crema: This could be due to stale beans or improper extraction. Always use freshly roasted beans and ensure your espresso shot is well-pulled.
+
+4. Inconsistent taste: Standardize your process by using a scale to measure your espresso and water precisely.
+
+5. Too strong: If the Americano is too strong for your liking, gradually increase the amount of hot water until you reach your preferred strength.

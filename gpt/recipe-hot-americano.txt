@@ -1,0 +1,71 @@
+Hi I am using nextjs, typescript, tailwindcss, shadcdnui, mdx
+for an internal tools app for training barista's in a specialty coffee shop
+called ru coffee bar.
+
+But please make the default values, the normal values for a specialty coffee shop in America.
+
+Help me create a mdx file for: Hot Americano
+
+I want the flow of the page to be like so..
+
+add the header as just the 
+<drink name>
+
+then i want you to
+
+Then add some context on the drink, feel free to add whatever you think is important for a barista to know
+- but for sure include
+a short description on this drink
+and a tiny bit of its history for context
+the ingredients that make this up
+and the flavor profile
+and a popularity statistic
+
+keep this short, it should take no more than a paragraph total
+
+then i want you to include a calculator UI where we can see all the inputs to outputs in a ratio.
+Any changes to one input should automatically trigger changes to the variables in the ratio
+This is our generic component logic
+
+so you can just use it like so
+
+example!!!!
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+const CoffeeRecipePage = () => {
+  const espressoRecipe = {
+    title: "Espresso Recipe",
+    ingredients: [
+      { name: "Coffee", value: 18, unit: "g", ratio: 1 },
+      { name: "Water", value: 36, unit: "ml", ratio: 2 },
+      { name: "Yield", value: 30, unit: "ml", ratio: 1.67 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...espressoRecipe} />
+    </div>
+  );
+};
+
+The actual variables should be amount of water in grams, amount of espresso (default is 2oz or double shot)
+for a 8oz total output. so the ratio is 3:1 water to espresso
+
+The steps we do are
+
+pour 6oz of iced water,
+make espresso,
+pour in a measuring cup,
+serve over ice
+
+the reason why we put less total output is because it will melt the ice a bit (like tea)
+
+export default CoffeeRecipePage;
+
+then I want you to include a list of all Ingredients and Equipment
+
+then include the steps to actually make the drink
+
+
+then include any common troubleshooting steps

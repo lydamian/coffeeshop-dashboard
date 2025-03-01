@@ -40,11 +40,19 @@
     "category": "Coffee"
   },
   {
-    "name": "Americano",
-    "key": "americano",
+    "name": "Hot Americano",
+    "key": "hot-americano",
     "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
     "ingredients": "Espresso, hot water",
-    "tags": ["diluted", "smooth", "simple"],
+    "tags": ["diluted", "smooth", "simple", "hot"],
+    "category": "Coffee"
+  },
+  {
+    "name": "Iced Americano",
+    "key": "iced-americano",
+    "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
+    "ingredients": "Espresso, iced water",
+    "tags": ["diluted", "smooth", "simple", "iced"],
     "category": "Coffee"
   },
   {

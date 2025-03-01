@@ -82,8 +82,13 @@ const data: { navMain: Navigation[] } = {
           icon: () => <span>☕</span>,
         },
         {
-          name: "Americano",
-          href: "/recipes/americano",
+          name: "Hot Americano",
+          href: "/recipes/hot-americano",
+          icon: () => <span>☕</span>,
+        },
+        {
+          name: "Iced Americano",
+          href: "/recipes/iced-americano",
           icon: () => <span>☕</span>,
         },
         {
