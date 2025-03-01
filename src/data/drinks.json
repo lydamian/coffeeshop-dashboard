@@ -238,5 +238,37 @@
     "ingredients": "Milk",
     "tags": ["simple", "nutritious", "kid-friendly"],
     "category": "For kids"
+  },
+  {
+    "name": "Simple syrup",
+    "key": "simple-syrup",
+    "description": "Syrup made with equal parts 100% cane sugar and water, used to sweeten drinks",
+    "ingredients": "Cane sugar, water",
+    "tags": ["simple", "syrup", "sweet"],
+    "category": "syrup"
+  },
+  {
+    "name": "Vanilla syrup",
+    "key": "vanilla-syrup",
+    "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
+    "ingredients": "Black sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup"
+  },
+  {
+    "name": "Black sugar syrup",
+    "key": "black-sugar-syrup",
+    "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
+    "ingredients": "Black sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup"
+  },
+  {
+    "name": "Mixed berry syrup",
+    "key": "mixed-berry-syrup",
+    "description": "Syrup made with 5:2:1 ratio mixed berry to 100% cane sugar to water, used to sweeten drinks",
+    "ingredients": "Mixed Berry, Cane sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup"
   }
 ]
