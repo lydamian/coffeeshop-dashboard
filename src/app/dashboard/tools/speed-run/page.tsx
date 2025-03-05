@@ -1,10 +1,10 @@
 'use client';
 
-// pages/speed-run.tsx
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/outline';
 import drinks from '@/data/drinks.json';
 
 interface Drink {
@@ -53,7 +53,8 @@ export default function SpeedRun() {
     }
   }, [speedRunState]);
 
-  const startSpeedRun = () => {
+  const startSpeedRun = (e: React.FormEvent) => {
+    e.preventDefault();
     const selectedDrinks = selectRandomDrinks(numDrinks);
     const baristas = baristaNames.split(',').map(name => ({ name: name.trim(), timer: 0 }));
     const newState: SpeedRunState = {
@@ -135,74 +136,99 @@ export default function SpeedRun() {
     return { totalTime, completedCount, totalCount, avg, p75, p90, p95 };
   };
 
+  const resetSpeedRun = () => {
+    setSpeedRunState(null);
+    setNumDrinks(5);
+    setBaristaNames('');
+  };
+
   return (
     <div className="container mx-auto p-4">
       {!speedRunState ? (
-        <div className="space-y-4">
-          <Input
-            type="number"
-            value={numDrinks}
-            onChange={(e) => setNumDrinks(parseInt(e.target.value))}
-            placeholder="Number of drinks"
-          />
-          <Input
-            value={baristaNames}
-            onChange={(e) => setBaristaNames(e.target.value)}
-            placeholder="Barista names (comma-separated)"
-          />
-          <Button onClick={startSpeedRun}>Start Speed Run</Button>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Start Speed Run</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={startSpeedRun} className="space-y-4">
+              <Input
+                type="number"
+                value={numDrinks}
+                onChange={(e) => setNumDrinks(parseInt(e.target.value))}
+                placeholder="Number of drinks"
+              />
+              <Input
+                value={baristaNames}
+                onChange={(e) => setBaristaNames(e.target.value)}
+                placeholder="Barista names (comma-separated)"
+              />
+              <Button type="submit">Start Speed Run</Button>
+            </form>
+          </CardContent>
+        </Card>
       ) : speedRunState.endTime ? (
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Speed Run Summary</h2>
-          <div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Speed Run Summary</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             {(() => {
               const stats = calculateStats(speedRunState);
               return (
-                <>
+                <div>
                   <p>Total Time: {(stats.totalTime / 1000).toFixed(2)} seconds</p>
                   <p>Completed Drinks: {stats.completedCount} / {stats.totalCount}</p>
                   <p>Average Time: {(stats.avg / 1000).toFixed(2)} seconds</p>
                   <p>75th Percentile: {(stats.p75 / 1000).toFixed(2)} seconds</p>
                   <p>90th Percentile: {(stats.p90 / 1000).toFixed(2)} seconds</p>
                   <p>95th Percentile: {(stats.p95 / 1000).toFixed(2)} seconds</p>
-                </>
+                </div>
               );
             })()}
-          </div>
-          <h3 className="text-xl font-bold">Drink Details</h3>
-          <ul className="space-y-2">
-            {speedRunState.drinks
-              .filter(d => d.finishedAt)
-              .sort((a, b) => a.finishedAt! - b.finishedAt!)
-              .map((drink, index) => (
-                <li key={index}>
-                  {drink.drink.name} - Started: {new Date(drink.startedAt!).toLocaleTimeString()}, 
-                  Finished: {new Date(drink.finishedAt!).toLocaleTimeString()}, 
-                  Elapsed: {((drink.finishedAt! - drink.startedAt!) / 1000).toFixed(2)} seconds
-                </li>
-              ))}
-          </ul>
-        </div>
+            <h3 className="text-xl font-bold">Drink Details</h3>
+            <ul className="space-y-2">
+              {speedRunState.drinks
+                .filter(d => d.finishedAt)
+                .sort((a, b) => a.finishedAt! - b.finishedAt!)
+                .map((drink, index) => (
+                  <li key={index}>
+                    {drink.drink.name} - Started: {new Date(drink.startedAt!).toLocaleTimeString()}, 
+                    Finished: {new Date(drink.finishedAt!).toLocaleTimeString()}, 
+                    Elapsed: {((drink.finishedAt! - drink.startedAt!) / 1000).toFixed(2)} seconds
+                  </li>
+                ))}
+            </ul>
+            <Button onClick={resetSpeedRun}>Start New Speed Run</Button>
+          </CardContent>
+        </Card>
       ) : (
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Active Speed Run</h2>
-          <ul className="space-y-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Active Speed Run</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             {speedRunState.drinks.map((drink, index) => (
-              <li key={index} className="flex items-center justify-between">
-                <Link className="text-blue-500 hover:underline" href={`/recipes/${drink.drink.key}`}>
-                  {drink.drink.name}
-                </Link>
-                <Button
-                  onClick={() => drink.finishedAt ? unmarkDrinkAsFinished(index) : markDrinkAsFinished(index)}
-                >
-                  {drink.finishedAt ? 'Unmark' : 'Mark as Finished'}
-                </Button>
-              </li>
+              <Card key={index}>
+                <CardContent className="flex items-center justify-between p-6">
+                  <div className="flex-grow pr-4">
+                    <CardTitle>{drink.drink.name}</CardTitle>
+                    <p className="text-sm text-gray-500">{drink.drink.description}</p>
+                  </div>
+                  <div
+                    className="flex-shrink-0 w-16 h-16 flex items-center justify-center cursor-pointer"
+                    onClick={() => drink.finishedAt ? unmarkDrinkAsFinished(index) : markDrinkAsFinished(index)}
+                  >
+                    {drink.finishedAt ? 
+                      <CheckCircleIcon className="w-12 h-12 text-green-500" /> : 
+                      <ClockIcon className="w-12 h-12 text-blue-500" />
+                    }
+                  </div>
+                </CardContent>
+              </Card>
             ))}
-          </ul>
-          <Button onClick={finishSpeedRun}>Finish Speed Run</Button>
-        </div>
+            <Button onClick={finishSpeedRun}>Finish Speed Run</Button>
+          </CardContent>
+        </Card>
       )}
     </div>
   );
