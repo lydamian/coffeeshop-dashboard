@@ -39,17 +39,35 @@ export default function SpeedRun() {
   const [numDrinks, setNumDrinks] = useState(5);
   const [baristaNames, setBaristaNames] = useState('');
   const [speedRunState, setSpeedRunState] = useState<SpeedRunState | null>(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
     const savedState = localStorage.getItem('speedRunState');
     if (savedState) {
-      setSpeedRunState(JSON.parse(savedState));
+      const parsedState = JSON.parse(savedState);
+      setSpeedRunState(parsedState);
+      if (parsedState.startTime && !parsedState.endTime) {
+        // Resume timer if speed run was in progress
+        const interval = setInterval(() => {
+          setElapsedTime(Math.floor((Date.now() - parsedState.startTime) / 1000));
+        }, 1000);
+        return () => clearInterval(interval);
+      }
     }
   }, []);
 
   useEffect(() => {
     if (speedRunState) {
       localStorage.setItem('speedRunState', JSON.stringify(speedRunState));
+    }
+  }, [speedRunState]);
+
+  useEffect(() => {
+    if (speedRunState && speedRunState.startTime && !speedRunState.endTime) {
+      const interval = setInterval(() => {
+        setElapsedTime(Math.floor((Date.now() - speedRunState.startTime) / 1000));
+      }, 1000);
+      return () => clearInterval(interval);
     }
   }, [speedRunState]);
 
@@ -64,6 +82,7 @@ export default function SpeedRun() {
       endTime: null,
     };
     setSpeedRunState(newState);
+    setElapsedTime(0);
   };
 
   const selectRandomDrinks = (count: number): SpeedRunDrink[] => {
@@ -140,6 +159,13 @@ export default function SpeedRun() {
     setSpeedRunState(null);
     setNumDrinks(5);
     setBaristaNames('');
+    setElapsedTime(0);
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -176,12 +202,12 @@ export default function SpeedRun() {
               const stats = calculateStats(speedRunState);
               return (
                 <div>
-                  <p>Total Time: {(stats.totalTime / 1000).toFixed(2)} seconds</p>
+                  <p>Total Time: {formatTime(Math.floor(stats.totalTime / 1000))}</p>
                   <p>Completed Drinks: {stats.completedCount} / {stats.totalCount}</p>
-                  <p>Average Time: {(stats.avg / 1000).toFixed(2)} seconds</p>
-                  <p>75th Percentile: {(stats.p75 / 1000).toFixed(2)} seconds</p>
-                  <p>90th Percentile: {(stats.p90 / 1000).toFixed(2)} seconds</p>
-                  <p>95th Percentile: {(stats.p95 / 1000).toFixed(2)} seconds</p>
+                  <p>Average Time: {formatTime(Math.floor(stats.avg / 1000))}</p>
+                  <p>75th Percentile: {formatTime(Math.floor(stats.p75 / 1000))}</p>
+                  <p>90th Percentile: {formatTime(Math.floor(stats.p90 / 1000))}</p>
+                  <p>95th Percentile: {formatTime(Math.floor(stats.p95 / 1000))}</p>
                 </div>
               );
             })()}
@@ -194,7 +220,7 @@ export default function SpeedRun() {
                   <li key={index}>
                     {drink.drink.name} - Started: {new Date(drink.startedAt!).toLocaleTimeString()}, 
                     Finished: {new Date(drink.finishedAt!).toLocaleTimeString()}, 
-                    Elapsed: {((drink.finishedAt! - drink.startedAt!) / 1000).toFixed(2)} seconds
+                    Elapsed: {formatTime(Math.floor((drink.finishedAt! - drink.startedAt!) / 1000))}
                   </li>
                 ))}
             </ul>
@@ -205,6 +231,7 @@ export default function SpeedRun() {
         <Card>
           <CardHeader>
             <CardTitle>Active Speed Run</CardTitle>
+            <div className="text-2xl font-bold">{formatTime(elapsedTime)}</div>
           </CardHeader>
           <CardContent className="space-y-4">
             {speedRunState.drinks.map((drink, index) => (
@@ -213,6 +240,11 @@ export default function SpeedRun() {
                   <div className="flex-grow pr-4">
                     <CardTitle>{drink.drink.name}</CardTitle>
                     <p className="text-sm text-gray-500">{drink.drink.description}</p>
+                    {drink.finishedAt && (
+                      <p className="text-sm font-semibold">
+                        Elapsed: {formatTime(Math.floor((drink.finishedAt - (drink.startedAt || speedRunState.startTime!)) / 1000))}
+                      </p>
+                    )}
                   </div>
                   <div
                     className="flex-shrink-0 w-16 h-16 flex items-center justify-center cursor-pointer"
