@@ -1,1 +1,56 @@
-TODO implement template
+# Black Sugar Syrup
+
+Black sugar syrup is a rich, molasses-like sweetener commonly used in specialty coffee shops. Made from unrefined cane sugar, it offers a complex flavor profile that enhances various coffee drinks. Originating in East Asia, particularly Taiwan, it has gained popularity in American specialty coffee shops for its unique taste and versatility. The syrup consists of black sugar and water, resulting in a deep, caramel-like flavor with subtle notes of smoke and earthiness. It's estimated that about 30% of specialty coffee shops in the US now offer drinks featuring black sugar syrup.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const blackSugarSyrupRecipe = {
+    title: "Black Sugar Syrup Recipe",
+    ingredients: [
+      { name: "Black Sugar", value: 500, unit: "g", ratio: 2 },
+      { name: "Water", value: 250, unit: "ml", ratio: 1 },
+      { name: "Output", value: 20.29, unit: "fl oz", ratio: 0.08116 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...blackSugarSyrupRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+Ingredients:
+- Black sugar (also known as muscovado or kokuto)
+- Filtered water
+
+Equipment:
+- Medium saucepan
+- Wooden spoon or heat-resistant spatula
+- Glass measuring cup
+- 24 oz squeeze bottle
+- Fine-mesh strainer (optional)
+
+## Instructions
+
+1. Measure 500g of black sugar and 250ml of water into a medium saucepan.
+2. Place the saucepan over medium heat and stir to dissolve the sugar.
+3. Bring the mixture to a boil, stirring occasionally.
+4. Reduce heat and let simmer for 3-5 minutes, stirring to prevent burning.
+5. Remove from heat and carefully pour into a glass measuring cup to cool slightly.
+6. Once cooled enough to handle, transfer the syrup to a 24 oz squeeze bottle.
+7. Let cool completely before sealing the bottle.
+8. Store at room temperature for up to 2 weeks, or refrigerate for longer shelf life.
+
+## Troubleshooting
+
+1. Crystallization: If sugar crystals form, gently reheat the syrup and stir until dissolved.
+2. Too thick: Add a small amount of hot water and stir to reach desired consistency.
+3. Too thin: Simmer the syrup for a few more minutes to reduce and thicken.
+4. Burnt taste: Always use medium heat and stir frequently to prevent burning.
+5. Cloudiness: Strain the syrup through a fine-mesh strainer before bottling.
