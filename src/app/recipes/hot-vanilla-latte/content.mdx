@@ -1,0 +1,65 @@
+# Hot Vanilla Latte
+
+The Hot Vanilla Latte is a beloved classic in the world of specialty coffee, combining the rich, bold flavors of espresso with the smooth, creamy texture of steamed milk and the sweet, aromatic notes of vanilla. This drink has its roots in the Italian caffè latte, but the addition of vanilla syrup is an American innovation that gained popularity in the 1990s. The Hot Vanilla Latte offers a perfect balance of bitter coffee, sweet vanilla, and creamy milk, creating a comforting and indulgent flavor profile. It's consistently ranked among the top 5 most popular espresso-based drinks in American coffee shops, appealing to both coffee enthusiasts and those who prefer a milder coffee experience.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const vanillaLatteRecipe = {
+    title: "Hot Vanilla Latte Recipe",
+    ingredients: [
+      { name: "Vanilla Syrup", value: 19, unit: "g", ratio: 1 },
+      { name: "Espresso", value: 60, unit: "ml", ratio: 3.16 },
+      { name: "Steamed Milk", value: 188, unit: "ml", ratio: 9.89 },
+      { name: "Total Output", value: 9, unit: "oz", ratio: 0.47 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...vanillaLatteRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+### Ingredients:
+- Vanilla syrup (19g)
+- Espresso beans
+- Whole milk
+- Water (for espresso)
+
+### Equipment:
+- Espresso machine with steam wand
+- Espresso grinder
+- Milk pitcher
+- 12 oz ceramic cup
+- Shot glass or espresso scale
+- Thermometer (optional)
+- Latte art tool (optional)
+
+## Steps to Make the Drink
+
+1. Preheat the ceramic cup with hot water.
+2. Pour 19g of vanilla syrup into the preheated cup.
+3. Grind espresso beans and prepare a double shot (2 oz / 60 ml) of espresso.
+4. Pour the espresso over the vanilla syrup in the cup.
+5. Steam the milk to approximately 150°F (65°C), creating a velvety microfoam.
+6. Slowly pour the steamed milk into the cup, starting from a height to mix the espresso and syrup.
+7. As the cup fills, lower the milk pitcher closer to the surface to create latte art.
+8. Continue pouring until the total volume reaches approximately 9 oz.
+9. Serve immediately and enjoy!
+
+## Common Troubleshooting
+
+1. **Syrup not mixing well**: Stir the syrup and espresso briefly before adding milk.
+2. **Milk too hot or cold**: Aim for 150°F (65°C) for optimal taste and texture.
+3. **Latte art difficulties**: Ensure milk is properly steamed with fine microfoam and pour slowly.
+4. **Weak coffee flavor**: Check espresso extraction time and grind size.
+5. **Too sweet**: Adjust vanilla syrup amount to taste.
+6. **Inconsistent drink size**: Use a scale or marked pitcher to ensure consistent milk volume.
+7. **Burnt taste**: Make sure the espresso isn't over-extracted and the milk isn't overheated.
+8. **Separation of milk and coffee**: Pour milk immediately after steaming and incorporate well.

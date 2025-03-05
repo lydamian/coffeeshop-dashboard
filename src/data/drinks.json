@@ -63,8 +63,8 @@
     "icon": "🧊☕️"
   },
   {
-    "name": "Lychee Espresso Tonic",
-    "key": "lychee-espresso-tonic",
+    "name": "Iced Lychee Espresso Tonic",
+    "key": "iced-lychee-espresso-tonic",
     "description": "A refreshing blend of espresso, tonic water, and lychee syrup over ice",
     "ingredients": "Espresso, tonic water, lychee syrup, ice",
     "tags": ["refreshing", "unique", "summer"],
@@ -108,8 +108,8 @@
     "icon": "☕️"
   },
   {
-    "name": "Tie Guan Yin Fruit Tea",
-    "key": "tie-guan-yin-fruit-tea",
+    "name": "Iced Tie Guan Yin Fruit Tea",
+    "key": "iced-tie-guan-yin-fruit-tea",
     "description": "Oolong tea infused with mixed fruits for a refreshing and fragrant drink",
     "ingredients": "Tie Guan Yin tea, mixed fruits, ice",
     "tags": ["refreshing", "fruity", "iced"],

@@ -1,0 +1,62 @@
+# Iced Lychee Espresso Tonic
+
+The Iced Lychee Espresso Tonic is a refreshing and unique specialty coffee drink that combines the bold flavors of espresso with the sweet and floral notes of lychee, all balanced by the crisp effervescence of tonic water. This modern creation has gained popularity in specialty coffee shops across the United States, offering a perfect blend of caffeine kick and fruity refreshment. The drink's origins can be traced to the trend of coffee-based spritzers and the increasing interest in Asian-inspired flavors in Western coffee culture. Its flavor profile is complex, featuring the rich bitterness of espresso, the sweet and aromatic lychee, and the quinine bite of tonic water. While still considered a niche offering, it has seen a steady rise in popularity, especially during summer months in urban coffee scenes.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const lycheeEspressoTonicRecipe = {
+    title: "Iced Lychee Espresso Tonic Recipe",
+    ingredients: [
+      { name: "Lychee Syrup", value: 30, unit: "g", ratio: 1 },
+      { name: "Sparkling Water", value: 148, unit: "ml", ratio: 4.93 },
+      { name: "Espresso", value: 60, unit: "ml", ratio: 2 },
+      { name: "Total Output", value: 9, unit: "oz", ratio: 0.3 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...lycheeEspressoTonicRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+### Ingredients:
+- Lychee syrup (30g)
+- Sparkling water (Polar or similar brand)
+- Double shot of espresso (2 oz / 60 ml)
+- Ice
+
+### Equipment:
+- Espresso machine
+- Measuring cup
+- Bar spoon
+- Jigger or scale
+- 12 oz glass
+- Strainer (optional)
+
+## Steps to Make the Drink
+
+1. Prepare a double shot of espresso (2 oz) and set aside to cool slightly.
+2. In a measuring cup, add 30g of lychee syrup.
+3. Fill the measuring cup with sparkling water to reach 7 oz total volume (including the syrup).
+4. Gently stir the lychee syrup and sparkling water to combine.
+5. Fill a 12 oz glass with ice.
+6. Pour the lychee and sparkling water mixture over the ice.
+7. Slowly pour the cooled espresso over the back of a bar spoon to create a layered effect on top of the drink.
+8. Serve immediately and enjoy!
+
+## Common Troubleshooting
+
+1. **Syrup settling at the bottom**: Ensure thorough mixing of lychee syrup and sparkling water before pouring.
+2. **Lack of distinct layers**: Allow espresso to cool slightly before pouring, and use the back of a spoon for a gentler pour.
+3. **Overly sweet drink**: Adjust lychee syrup amount to taste, starting with less and adding more if needed.
+4. **Flat or lifeless tonic**: Use freshly opened sparkling water for maximum effervescence.
+5. **Bitter taste**: Check espresso extraction; over-extracted espresso can make the drink too bitter.
+6. **Weak coffee flavor**: Ensure proper espresso shot volume (2 oz) and consider using a darker roast if needed.
+7. **Incorrect total volume**: Double-check measurements to ensure a total output of 9 oz (266 ml) before adding ice.

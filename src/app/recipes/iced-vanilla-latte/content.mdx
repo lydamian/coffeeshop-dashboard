@@ -1,0 +1,66 @@
+# Iced Vanilla Latte
+
+The Iced Vanilla Latte is a refreshing twist on its hot counterpart, perfect for warm days or those who prefer their coffee cold. This drink combines the rich flavors of espresso with cold milk and vanilla syrup over ice, creating a balanced and invigorating beverage. Originating in the 1990s alongside the rise of iced coffee drinks in America, the Iced Vanilla Latte quickly became a staple in coffee shops nationwide. Its smooth, creamy texture paired with the bold espresso and sweet vanilla notes offers a delightful flavor profile that appeals to a wide range of coffee drinkers. According to recent market research, iced lattes, including the vanilla variety, account for over 20% of specialty coffee drink sales in the US during summer months, showcasing its enduring popularity.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const icedVanillaLatteRecipe = {
+    title: "Iced Vanilla Latte Recipe",
+    ingredients: [
+      { name: "Vanilla Syrup", value: 19, unit: "g", ratio: 1 },
+      { name: "Espresso", value: 60, unit: "ml", ratio: 3.16 },
+      { name: "Cold Milk", value: 180, unit: "ml", ratio: 9.47 },
+      { name: "Ice", value: 120, unit: "g", ratio: 6.32 },
+      { name: "Total Output", value: 16, unit: "oz", ratio: 0.84 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...icedVanillaLatteRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+### Ingredients:
+- Vanilla syrup (19g)
+- Espresso beans
+- Cold milk
+- Ice
+- Water (for espresso)
+
+### Equipment:
+- Espresso machine
+- Espresso grinder
+- 16 oz cold cup
+- Shot glass or espresso scale
+- Ice scoop
+- Long spoon or stirrer
+
+## Steps to Make the Drink
+
+1. Fill a 16 oz cold cup with about 120g of ice.
+2. Pour 19g of vanilla syrup over the ice.
+3. Grind espresso beans and prepare a double shot (2 oz / 60 ml) of espresso.
+4. Pour the freshly brewed espresso over the ice and syrup.
+5. Add 180 ml of cold milk to the cup.
+6. Stir gently to combine all ingredients and ensure the syrup is well mixed.
+7. Optional: Top with additional ice if needed.
+8. Serve immediately with a straw.
+
+## Common Troubleshooting
+
+1. **Drink too diluted**: Use less ice or pour espresso over the ice quickly to minimize melting.
+2. **Syrup not mixing well**: Stir more thoroughly, or mix syrup with espresso before adding to ice.
+3. **Espresso too bitter**: Check extraction time and grind size; consider using a slightly coarser grind for iced drinks.
+4. **Drink not cold enough**: Ensure milk and cup are well chilled before preparation.
+5. **Inconsistent sweetness**: Use a pump bottle or precise measurements for syrup.
+6. **Separation of ingredients**: Stir well and encourage customers to stir occasionally while drinking.
+7. **Weak coffee flavor**: Use a slightly stronger espresso shot or adjust the espresso-to-milk ratio.
+8. **Too sweet**: Adjust vanilla syrup amount to taste.
+9. **Inconsistent drink size**: Use a marked cup or measuring tools for precise ingredient amounts.
