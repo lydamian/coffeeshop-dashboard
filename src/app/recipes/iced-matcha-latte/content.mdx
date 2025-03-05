@@ -1,0 +1,73 @@
+# Iced Matcha Latte
+
+Iced Matcha Latte is a refreshing beverage that combines the earthy, umami flavors of Japanese green tea powder with cold milk and a touch of sweetness. Originating from traditional Japanese tea ceremonies, matcha has gained popularity in Western coffee shops as a healthier alternative to coffee. This drink consists of ceremonial grade matcha powder, hot water for mixing, syrup, cold milk, and ice, resulting in a smooth, vibrant green latte with a complex flavor profile balancing sweet, creamy, and slightly bitter notes. According to recent market research, iced matcha latte sales have increased by 60% in American specialty coffee shops over the past year, reflecting its growing popularity as a refreshing and Instagram-worthy drink.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const icedMatchaLatteRecipe = {
+    title: "Iced Matcha Latte Recipe",
+    ingredients: [
+      { name: "Matcha Powder", value: 4, unit: "g", ratio: 1 },
+      { name: "Hot Water (for mixing)", value: 30, unit: "ml", ratio: 7.5 },
+      { name: "Syrup", value: 19, unit: "g", ratio: 4.75 },
+      { name: "Cold Milk", value: 213, unit: "ml", ratio: 53.25 },
+      { name: "Total Yield", value: 266, unit: "ml", ratio: 66.5 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...icedMatchaLatteRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+Ingredients:
+- Ceremonial grade matcha powder
+- Hot water (175°F/80°C)
+- Cold milk (dairy or plant-based)
+- Syrup (e.g., simple syrup or flavored syrup)
+- Ice
+
+Equipment:
+- Matcha bowl (chawan)
+- Bamboo whisk (chasen)
+- Matcha sifter
+- Kettle
+- Mixing measuring cup
+- Serving glass (12-14 oz)
+- Syrup pump or measuring spoon
+- Scale
+- Long spoon for stirring
+
+## Instructions
+
+1. Sift 4g of matcha powder into the matcha bowl to remove any clumps.
+2. Add 30ml of hot water (175°F/80°C) to the bowl.
+3. Using the bamboo whisk, vigorously whisk the matcha and water in a "W" motion for about 1 minute until frothy and smooth, ensuring no clumps remain.
+4. Transfer the matcha mixture to a mixing measuring cup.
+5. Add a small amount of hot water to the matcha bowl, swirl to collect any residual matcha, and pour into the mixing measuring cup.
+6. Add 19g of syrup to the mixing measuring cup.
+7. Add 213ml of cold milk to the mixing measuring cup, bringing the total volume to about 266ml (9 oz).
+8. Stir gently to incorporate all ingredients.
+9. Fill a 12-14 oz serving glass with ice.
+10. Pour the iced matcha latte mixture over the ice.
+11. Serve immediately with a straw.
+
+## Troubleshooting
+
+1. Clumpy matcha: Sift the matcha powder before whisking and ensure vigorous whisking with hot water.
+2. Bitter taste: Use water at 175°F (80°C), not boiling, as it can make the matcha bitter.
+3. Weak flavor: Increase the amount of matcha powder slightly or reduce the milk quantity.
+4. Grainy texture: Use higher quality, ceremonial grade matcha and whisk thoroughly.
+5. Inconsistent color: Ensure the matcha is fully dissolved before adding milk and syrup.
+6. Too sweet or not sweet enough: Adjust the amount of syrup to taste.
+7. Diluted flavor: Use larger ice cubes to slow melting, or slightly increase the concentration of matcha and syrup.
+8. Separation of ingredients: Stir the drink well before serving and provide a straw for customers to mix as they drink.
+9. Inconsistent serving size: Use a scale and measuring cup to ensure accurate proportions of all ingredients.
+10. Matcha clumping when mixed with cold milk: Always mix matcha with hot water first before adding cold ingredients.

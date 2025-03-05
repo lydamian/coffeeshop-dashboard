@@ -1,0 +1,69 @@
+# Hot Matcha Latte
+
+Hot Matcha Latte is a popular beverage that combines the earthy, umami flavors of Japanese green tea powder with the creamy sweetness of steamed milk and a touch of syrup. Originating from traditional Japanese tea ceremonies, matcha has found its way into modern coffee shops, offering a caffeine boost with unique health benefits. The drink consists of ceremonial grade matcha powder, hot water, steamed milk, and a hint of sweetener, resulting in a smooth, vibrant green latte with a rich, slightly sweet, and grassy flavor profile. According to recent surveys, matcha lattes have seen a 200% increase in popularity in American specialty coffee shops over the past five years.
+
+import RatioCalculator from '@/components/ratio-calculator.tsx';
+
+export const Calculator = () => {
+  const matchaLatteRecipe = {
+    title: "Hot Matcha Latte Recipe",
+    ingredients: [
+      { name: "Matcha Powder", value: 4, unit: "g", ratio: 1 },
+      { name: "Hot Water (for mixing)", value: 30, unit: "ml", ratio: 7.5 },
+      { name: "Syrup", value: 19, unit: "g", ratio: 4.75 },
+      { name: "Steamed Milk", value: 180, unit: "ml", ratio: 45 },
+      { name: "Total Yield", value: 229, unit: "ml", ratio: 57.25 },
+    ]
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...matchaLatteRecipe} />
+    </div>
+  );
+};
+
+<Calculator />
+
+## Ingredients and Equipment
+
+Ingredients:
+- Ceremonial grade matcha powder
+- Hot water (175°F/80°C)
+- Milk (dairy or plant-based)
+- Syrup (e.g., simple syrup or flavored syrup)
+
+Equipment:
+- Matcha bowl (chawan)
+- Bamboo whisk (chasen)
+- Matcha sifter
+- Kettle
+- Serving latte cup (8-9 oz)
+- Milk steaming pitcher
+- Espresso machine with steam wand or milk frother
+- Syrup pump or measuring spoon
+
+## Instructions
+
+1. Add 19g of syrup to an 8-9 oz serving latte cup.
+2. Sift 4g of matcha powder into the matcha bowl to remove any clumps.
+3. Add 30ml of hot water (175°F/80°C) to the bowl.
+4. Using the bamboo whisk, vigorously whisk the matcha and water in a "W" motion for about 1 minute until frothy and smooth, ensuring no clumps remain.
+5. Pour the matcha mixture into the serving latte cup with syrup.
+6. Add a small amount of hot water to the matcha bowl, swirl to collect any residual matcha, and pour into the latte cup.
+7. Steam 180ml of milk to 150-160°F (65-70°C), creating a velvety microfoam.
+8. Slowly pour the steamed milk into the latte cup, allowing the foam to settle on top.
+9. Optional: Create latte art with the milk foam.
+10. Stir gently to incorporate the syrup and serve immediately.
+
+## Troubleshooting
+
+1. Clumpy matcha: Sift the matcha powder before whisking and ensure vigorous whisking.
+2. Bitter taste: Use water at 175°F (80°C), not boiling, as it can make the matcha bitter.
+3. Weak flavor: Increase the amount of matcha powder slightly or reduce the milk quantity.
+4. Grainy texture: Use higher quality, ceremonial grade matcha and whisk thoroughly.
+5. Inconsistent color: Ensure the matcha is fully dissolved before adding milk.
+6. Scalded milk: Steam milk to 150-160°F (65-70°C) to avoid burning and maintain sweetness.
+7. Flat latte art: Practice proper milk steaming technique to achieve the right microfoam consistency.
+8. Too sweet or not sweet enough: Adjust the amount of syrup to taste.
+9. Syrup not mixing well: Stir the drink gently after adding all ingredients to ensure even distribution of syrup.
