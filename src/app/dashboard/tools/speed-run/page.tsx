@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle } from 'lucide-react';
-import drinksData from '@/data/drinks.json';
+// pages/speed-run.tsx
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import drinks from '@/data/drinks.json';
 
 interface Drink {
   name: string;
@@ -14,287 +14,196 @@ interface Drink {
   ingredients: string;
   tags: string[];
   category: string;
+  icon: string;
 }
 
-interface DrinkResult {
+interface SpeedRunDrink {
+  drink: Drink;
+  startedAt: number | null;
+  finishedAt: number | null;
+}
+
+interface Barista {
   name: string;
-  timeTaken: number;
-}
-
-interface SpeedrunState {
   timer: number;
-  numDrinks: number;
-  selectedDrinks: Drink[];
-  completedDrinks: boolean[];
-  isRunning: boolean;
-  lastCheckTime: number;
-  results: DrinkResult[];
 }
 
-const STORAGE_KEY = 'drinkSpeedrunState';
+interface SpeedRunState {
+  drinks: SpeedRunDrink[];
+  baristas: Barista[];
+  startTime: number | null;
+  endTime: number | null;
+}
 
-const feedbackMessages = [
-  {
-    type: 'excellent',
-    message: "Outstanding job! You completed all drinks quickly and efficiently. Your speed and consistency are impressive!"
-  },
-  {
-    type: 'veryGood',
-    message: "Great work! You maintained a solid pace throughout the speedrun. Keep up the good work!"
-  },
-  {
-    type: 'good',
-    message: "Good job! You completed all drinks in a timely manner. There's still room for improvement, but you're doing well."
-  },
-  {
-    type: 'average',
-    message: "Not bad! You completed the speedrun, but there's definitely room for improvement. Focus on maintaining a consistent pace."
-  },
-  {
-    type: 'slowStart',
-    message: "You had a slow start, but picked up the pace towards the end. Try to maintain that energy throughout next time!"
-  },
-  {
-    type: 'slowFinish',
-    message: "You started strong but slowed down towards the end. Work on maintaining your initial pace throughout the entire speedrun."
-  },
-  {
-    type: 'inconsistent',
-    message: "Your pace was quite inconsistent. Try to find a rhythm and stick to it for better overall performance."
-  },
-  {
-    type: 'incomplete',
-    message: "You didn't complete all the drinks. Remember, speed is important, but so is finishing each task. Keep practicing!"
-  },
-  {
-    type: 'slow',
-    message: "You struggled and took too long. Focus on working a bit faster and try to complete each drink more efficiently."
-  }
-];
+export default function SpeedRun() {
+  const [numDrinks, setNumDrinks] = useState(5);
+  const [baristaNames, setBaristaNames] = useState('');
+  const [speedRunState, setSpeedRunState] = useState<SpeedRunState | null>(null);
 
-const DrinkSpeedrun: React.FC = () => {
-  const [state, setState] = useState<SpeedrunState>(() => {
-    if (typeof window !== 'undefined') {
-      const savedState = localStorage.getItem(STORAGE_KEY);
-      if (savedState) {
-        return JSON.parse(savedState);
-      }
+  useEffect(() => {
+    const savedState = localStorage.getItem('speedRunState');
+    if (savedState) {
+      setSpeedRunState(JSON.parse(savedState));
     }
-    return {
-      timer: 0,
-      numDrinks: 5,
-      selectedDrinks: [],
-      completedDrinks: [],
-      isRunning: false,
-      lastCheckTime: 0,
-      results: [],
+  }, []);
+
+  useEffect(() => {
+    if (speedRunState) {
+      localStorage.setItem('speedRunState', JSON.stringify(speedRunState));
+    }
+  }, [speedRunState]);
+
+  const startSpeedRun = () => {
+    const selectedDrinks = selectRandomDrinks(numDrinks);
+    const baristas = baristaNames.split(',').map(name => ({ name: name.trim(), timer: 0 }));
+    const newState: SpeedRunState = {
+      drinks: selectedDrinks,
+      baristas,
+      startTime: Date.now(),
+      endTime: null,
     };
-  });
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-  }, [state]);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (state.isRunning) {
-      interval = setInterval(() => {
-        setState(prevState => ({
-          ...prevState,
-          timer: prevState.timer + 1
-        }));
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [state.isRunning]);
-
-  const startSpeedrun = () => {
-    const shuffled = [...drinksData].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, state.numDrinks);
-    setState({
-      ...state,
-      selectedDrinks: selected,
-      completedDrinks: new Array(selected.length).fill(false),
-      isRunning: true,
-      timer: 0,
-      lastCheckTime: 0,
-      results: [],
-    });
+    setSpeedRunState(newState);
   };
 
-  const checkDrink = (index: number) => {
-    if (state.completedDrinks[index]) return;
-
-    const timeTaken = state.timer - state.lastCheckTime;
-    const newResults = [...state.results, { name: state.selectedDrinks[index].name, timeTaken }];
-    const newCompletedDrinks = [...state.completedDrinks];
-    newCompletedDrinks[index] = true;
-
-    setState({
-      ...state,
-      results: newResults,
-      completedDrinks: newCompletedDrinks,
-      lastCheckTime: state.timer,
-    });
-  };
-
-  const finishSpeedrun = () => {
-    const unfinishedDrinks = state.selectedDrinks.filter((_, index) => !state.completedDrinks[index]);
-    const newResults = [
-      ...state.results,
-      ...unfinishedDrinks.map(drink => ({ name: drink.name, timeTaken: state.timer }))
-    ];
-
-    setState(prevState => ({
-      ...prevState,
-      isRunning: false,
-      results: newResults,
-      completedDrinks: new Array(prevState.selectedDrinks.length).fill(true),
+  const selectRandomDrinks = (count: number): SpeedRunDrink[] => {
+    const shuffled = [...drinks].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count).map(drink => ({
+      drink,
+      startedAt: null,
+      finishedAt: null,
     }));
   };
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
+  const markDrinkAsFinished = (index: number) => {
+    if (!speedRunState) return;
 
-  const getFeedback = (results: DrinkResult[], totalTime: number, numDrinks: number) => {
-    const completedDrinks = results.filter(r => r.timeTaken < totalTime);
-    const averageTime = totalTime / numDrinks;
-    const standardDeviation = Math.sqrt(results.reduce((sum, r) => sum + Math.pow(r.timeTaken - averageTime, 2), 0) / numDrinks);
+    const updatedDrinks = [...speedRunState.drinks];
+    const lastFinishedDrink = updatedDrinks.reduce((latest, drink) => 
+      drink.finishedAt && (!latest || drink.finishedAt > latest.finishedAt) ? drink : latest
+    , null as SpeedRunDrink | null);
 
-    if (completedDrinks.length < numDrinks) {
-      return feedbackMessages.find(f => f.type === 'incomplete')!.message;
-    }
+    const now = Date.now();
+    updatedDrinks[index] = {
+      ...updatedDrinks[index],
+      startedAt: lastFinishedDrink ? lastFinishedDrink.finishedAt : speedRunState.startTime,
+      finishedAt: now,
+    };
 
-    if (averageTime < 30 && standardDeviation < 5) {
-      return feedbackMessages.find(f => f.type === 'excellent')!.message;
-    }
-
-    if (averageTime < 45 && standardDeviation < 10) {
-      return feedbackMessages.find(f => f.type === 'veryGood')!.message;
-    }
-
-    if (averageTime < 60) {
-      return feedbackMessages.find(f => f.type === 'good')!.message;
-    }
-
-    if (standardDeviation > 20) {
-      return feedbackMessages.find(f => f.type === 'inconsistent')!.message;
-    }
-
-    const firstHalfAvg = results.slice(0, Math.floor(numDrinks / 2)).reduce((sum, r) => sum + r.timeTaken, 0) / Math.floor(numDrinks / 2);
-    const secondHalfAvg = results.slice(Math.floor(numDrinks / 2)).reduce((sum, r) => sum + r.timeTaken, 0) / (numDrinks - Math.floor(numDrinks / 2));
-
-    if (firstHalfAvg > secondHalfAvg * 1.3) {
-      return feedbackMessages.find(f => f.type === 'slowStart')!.message;
-    }
-
-    if (secondHalfAvg > firstHalfAvg * 1.3) {
-      return feedbackMessages.find(f => f.type === 'slowFinish')!.message;
-    }
-
-    if (averageTime < 90) {
-      return feedbackMessages.find(f => f.type === 'average')!.message;
-    }
-
-    return feedbackMessages.find(f => f.type === 'slow')!.message;
-  };
-
-  const calculateResults = () => {
-    const totalTime = state.timer;
-    const averageTime = totalTime / state.numDrinks;
-    const feedback = getFeedback(state.results, totalTime, state.numDrinks);
-
-    return (
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Results</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="font-bold text-lg mb-4">{feedback}</p>
-          <p>Total Time: {formatTime(totalTime)}</p>
-          <p>Average Time per Drink: {formatTime(Math.round(averageTime))}</p>
-          <h3 className="font-bold mt-2">Time per Drink:</h3>
-          <ul>
-            {state.results.map((result, index) => (
-              <li key={index}>
-                {result.name}: {result.timeTaken === state.timer ? 'Not completed' : formatTime(result.timeTaken)}
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-    );
-  };
-
-  const resetSpeedrun = () => {
-    setState({
-      timer: 0,
-      numDrinks: 5,
-      selectedDrinks: [],
-      completedDrinks: [],
-      isRunning: false,
-      lastCheckTime: 0,
-      results: [],
+    setSpeedRunState({
+      ...speedRunState,
+      drinks: updatedDrinks,
     });
-    localStorage.removeItem(STORAGE_KEY);
+  };
+
+  const unmarkDrinkAsFinished = (index: number) => {
+    if (!speedRunState) return;
+
+    const updatedDrinks = [...speedRunState.drinks];
+    updatedDrinks[index] = {
+      ...updatedDrinks[index],
+      startedAt: null,
+      finishedAt: null,
+    };
+
+    setSpeedRunState({
+      ...speedRunState,
+      drinks: updatedDrinks,
+    });
+  };
+
+  const finishSpeedRun = () => {
+    if (!speedRunState) return;
+
+    setSpeedRunState({
+      ...speedRunState,
+      endTime: Date.now(),
+    });
+  };
+
+  const calculateStats = (state: SpeedRunState) => {
+    const finishedDrinks = state.drinks.filter(d => d.finishedAt);
+    const totalTime = state.endTime! - state.startTime!;
+    const completedCount = finishedDrinks.length;
+    const totalCount = state.drinks.length;
+
+    const elapsedTimes = finishedDrinks.map(d => d.finishedAt! - d.startedAt!).sort((a, b) => a - b);
+    const avg = elapsedTimes.reduce((sum, time) => sum + time, 0) / elapsedTimes.length;
+    const p75 = elapsedTimes[Math.floor(elapsedTimes.length * 0.75)];
+    const p90 = elapsedTimes[Math.floor(elapsedTimes.length * 0.90)];
+    const p95 = elapsedTimes[Math.floor(elapsedTimes.length * 0.95)];
+
+    return { totalTime, completedCount, totalCount, avg, p75, p90, p95 };
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Drink Speedrun</h1>
-      {!state.isRunning && state.results.length === 0 && (
-        <div className="mb-4">
+      {!speedRunState ? (
+        <div className="space-y-4">
           <Input
             type="number"
-            value={state.numDrinks}
-            onChange={(e) => setState({...state, numDrinks: Math.max(1, Math.min(20, parseInt(e.target.value)))})}
+            value={numDrinks}
+            onChange={(e) => setNumDrinks(parseInt(e.target.value))}
             placeholder="Number of drinks"
-            className="mb-2"
           />
-          <Button onClick={startSpeedrun} className="mr-2">Start Speedrun</Button>
-          <Button onClick={resetSpeedrun} variant="outline">Clear State</Button>
+          <Input
+            value={baristaNames}
+            onChange={(e) => setBaristaNames(e.target.value)}
+            placeholder="Barista names (comma-separated)"
+          />
+          <Button onClick={startSpeedRun}>Start Speed Run</Button>
         </div>
-      )}
-      {state.isRunning && (
-        <div>
-          <p className="mb-2">Time: {formatTime(state.timer)}</p>
-          <p className="mb-4">Time since last drink: {formatTime(state.timer - state.lastCheckTime)}</p>
-          {state.selectedDrinks.map((drink, index) => (
-            <Card key={drink.key} className="mb-4">
-              <CardHeader>
-                <CardTitle className="flex justify-between items-center">
-                  {drink.name}
-                  {state.completedDrinks[index] && <CheckCircle className="text-green-500" />}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>{drink.description}</p>
-                <Button 
-                  onClick={() => checkDrink(index)} 
-                  className="mt-2" 
-                  disabled={state.completedDrinks[index]}
+      ) : speedRunState.endTime ? (
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold">Speed Run Summary</h2>
+          <div>
+            {(() => {
+              const stats = calculateStats(speedRunState);
+              return (
+                <>
+                  <p>Total Time: {(stats.totalTime / 1000).toFixed(2)} seconds</p>
+                  <p>Completed Drinks: {stats.completedCount} / {stats.totalCount}</p>
+                  <p>Average Time: {(stats.avg / 1000).toFixed(2)} seconds</p>
+                  <p>75th Percentile: {(stats.p75 / 1000).toFixed(2)} seconds</p>
+                  <p>90th Percentile: {(stats.p90 / 1000).toFixed(2)} seconds</p>
+                  <p>95th Percentile: {(stats.p95 / 1000).toFixed(2)} seconds</p>
+                </>
+              );
+            })()}
+          </div>
+          <h3 className="text-xl font-bold">Drink Details</h3>
+          <ul className="space-y-2">
+            {speedRunState.drinks
+              .filter(d => d.finishedAt)
+              .sort((a, b) => a.finishedAt! - b.finishedAt!)
+              .map((drink, index) => (
+                <li key={index}>
+                  {drink.drink.name} - Started: {new Date(drink.startedAt!).toLocaleTimeString()}, 
+                  Finished: {new Date(drink.finishedAt!).toLocaleTimeString()}, 
+                  Elapsed: {((drink.finishedAt! - drink.startedAt!) / 1000).toFixed(2)} seconds
+                </li>
+              ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold">Active Speed Run</h2>
+          <ul className="space-y-2">
+            {speedRunState.drinks.map((drink, index) => (
+              <li key={index} className="flex items-center justify-between">
+                <Link className="text-blue-500 hover:underline" href={`/recipes/${drink.drink.key}`}>
+                  {drink.drink.name}
+                </Link>
+                <Button
+                  onClick={() => drink.finishedAt ? unmarkDrinkAsFinished(index) : markDrinkAsFinished(index)}
                 >
-                  Complete
+                  {drink.finishedAt ? 'Unmark' : 'Mark as Finished'}
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
-          <Button onClick={finishSpeedrun} className="mt-4">Finish Speedrun</Button>
+              </li>
+            ))}
+          </ul>
+          <Button onClick={finishSpeedRun}>Finish Speed Run</Button>
         </div>
-      )}
-      {!state.isRunning && state.results.length > 0 && (
-        <>
-          {calculateResults()}
-          <Button onClick={resetSpeedrun} className="mt-4">Start New Speedrun</Button>
-        </>
       )}
     </div>
   );
-};
-
-export default DrinkSpeedrun;
+}

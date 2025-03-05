@@ -1,0 +1,371 @@
+
+Hi I am using nextjs, typescript, tailwindcss, shadcdnui, mdx
+for an internal tools app for training barista's in a specialty coffee shop
+called ru coffee bar.
+
+I want to create a speed run feature that will allow me to train my baristas.
+
+Inputs will be a dynamic list of users,
+the number of drinks i want to randomly sample.
+Output will be a UI that is a single list of drinks that can be marked
+The ability for a user to mark a drink as completed, or unmark it if they accidently marked it
+
+so the way that i want the timer to work, is i want to keep track when i mark a drink as completed that it will keep track of how long it took to make that drink
+which should be elapsedTime between current time and the time it took to complete the latest drink,
+so for each drink we should keep track of when we started it, when we finished it and elapsed time.
+
+we want to keep track of this information for all drinks and not just have a latestTime variable because in the case that i
+unmark a drink in the future and mark it completed again, we can simply take the elapsed time anew.
+
+also for elapsed time we should keep a timer for each user to account for parallelism, or whatever is a good strategy for this otherwise,
+if we only have one timer, and we both finish a drink at the same time wouldn't one drink have a elapsed time of 0 to make the drink which
+will look odd in the summary
+
+A button to finish the speed run
+after finishing speed run i want to output
+a summary
+total time,
+details for each drink such as how long it took
+and feedback, for the feedback please make it as robust as possible based on any metrics we can gather
+
+lets use a drinks.json file that looks like so
+[
+  {
+    "name": "Espresso",
+    "key": "espresso",
+    "description": "A concentrated shot of coffee brewed by forcing hot water through finely-ground coffee beans",
+    "ingredients": "Finely ground coffee beans, hot water",
+    "tags": ["strong", "intense", "quick", "classic"],
+    "category": "Coffee",
+    "icon": "☕️"
+  },
+  {
+    "name": "Cortado",
+    "key": "cortado",
+    "description": "Equal parts espresso and steamed milk, creating a balanced and smooth coffee experience",
+    "ingredients": "Espresso, steamed milk",
+    "tags": ["balanced", "smooth", "Spanish-inspired"],
+    "category": "Coffee",
+    "icon": "☕️"
+  },
+  {
+    "name": "Cappuccino",
+    "key": "cappuccino",
+    "description": "Equal parts espresso, steamed milk, and milk foam, often dusted with cocoa powder",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["frothy", "Italian", "breakfast"],
+    "category": "Coffee",
+    "icon": "☕️"
+  },
+  {
+    "name": "Hot Latte",
+    "key": "hot-latte",
+    "description": "Espresso with steamed milk and a small layer of milk foam on top",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["creamy", "mild", "popular"],
+    "category": "Coffee",
+    "icon": "☕️"
+  },
+  {
+    "name": "Iced Latte",
+    "key": "iced-latte",
+    "description": "Espresso with steamed milk and a small layer of milk foam on top",
+    "ingredients": "Espresso, steamed milk, milk foam",
+    "tags": ["creamy", "mild", "popular"],
+    "category": "Coffee",
+    "icon": "🧊☕️"
+  },
+  {
+    "name": "Hot Americano",
+    "key": "hot-americano",
+    "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
+    "ingredients": "Espresso, hot water",
+    "tags": ["diluted", "smooth", "simple", "hot"],
+    "category": "Coffee",
+    "icon": "☕️"
+  },
+  {
+    "name": "Iced Americano",
+    "key": "iced-americano",
+    "description": "Espresso diluted with hot water, similar strength to drip coffee but different flavor profile",
+    "ingredients": "Espresso, iced water",
+    "tags": ["diluted", "smooth", "simple", "iced"],
+    "category": "Coffee",
+    "icon": "🧊☕️"
+  },
+  {
+    "name": "Iced Lychee Espresso Tonic",
+    "key": "iced-lychee-espresso-tonic",
+    "description": "A refreshing blend of espresso, tonic water, and lychee syrup over ice",
+    "ingredients": "Espresso, tonic water, lychee syrup, ice",
+    "tags": ["refreshing", "unique", "summer"],
+    "category": "Signature Drinks",
+    "icon": "🍹"
+  },
+  {
+    "name": "Hot Vanilla Latte",
+    "key": "hot-vanilla-latte",
+    "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
+    "ingredients": "Espresso, steamed milk, vanilla syrup",
+    "tags": ["sweet", "aromatic", "popular"],
+    "category": "Signature Drinks",
+    "icon": "☕️"
+  },
+  {
+    "name": "Iced Vanilla Latte",
+    "key": "iced-vanilla-latte",
+    "description": "A latte flavored with vanilla syrup for a sweet and aromatic taste",
+    "ingredients": "Espresso, steamed milk, vanilla syrup",
+    "tags": ["sweet", "aromatic", "popular"],
+    "category": "Signature Drinks",
+    "icon": "🧊☕️"
+  },
+  {
+    "name": "Iced Black Sugar Latte",
+    "key": "iced-black-sugar-latte",
+    "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
+    "ingredients": "Espresso, steamed milk, black sugar syrup",
+    "tags": ["hot", "sweet", "rich", "caramel"],
+    "category": "Signature Drinks",
+    "icon": "🧊☕️"
+  },
+  {
+    "name": "Hot Black Sugar Latte",
+    "key": "hot-black-sugar-latte",
+    "description": "A latte sweetened with black sugar syrup for a rich, caramel-like flavor",
+    "ingredients": "Espresso, steamed milk, black sugar syrup",
+    "tags": ["iced", "sweet", "rich", "caramel"],
+    "category": "Signature Drinks",
+    "icon": "☕️"
+  },
+  {
+    "name": "Iced Tie Guan Yin Fruit Tea",
+    "key": "iced-tie-guan-yin-fruit-tea",
+    "description": "Oolong tea infused with mixed fruits for a refreshing and fragrant drink",
+    "ingredients": "Tie Guan Yin tea, mixed fruits, ice",
+    "tags": ["refreshing", "fruity", "iced"],
+    "category": "Non Coffee",
+    "icon": "🍵"
+  },
+  {
+    "name": "Hot Black Sugar Hojicha Latte",
+    "key": "hot-black-sugar-hojicha-latte",
+    "description": "Roasted green tea latte sweetened with black sugar syrup",
+    "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
+    "tags": ["roasted", "sweet", "Japanese-inspired"],
+    "category": "Non Coffee",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced Black Sugar Hojicha Latte",
+    "key": "iced-black-sugar-hojicha-latte",
+    "description": "Roasted green tea latte sweetened with black sugar syrup",
+    "ingredients": "Hojicha tea, steamed milk, black sugar syrup",
+    "tags": ["roasted", "sweet", "Japanese-inspired"],
+    "category": "Non Coffee",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Iced Berry Fizz",
+    "key": "iced-berry-fizz",
+    "description": "A sparkling mixed berry drink, perfect for a refreshing non-caffeinated option",
+    "ingredients": "Mixed berry syrup, soda water, ice",
+    "tags": ["refreshing", "fruity", "sparkling"],
+    "category": "Non Coffee",
+    "icon": "🫐"
+  },
+  {
+    "name": "Hot Matcha Latte",
+    "key": "hot-matcha-latte",
+    "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
+    "ingredients": "Matcha powder, steamed milk",
+    "tags": ["earthy", "Japanese", "antioxidant-rich"],
+    "category": "Matcha",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced Matcha Latte",
+    "key": "iced-matcha-latte",
+    "description": "Finely ground green tea whisked with steamed milk for a smooth, earthy drink",
+    "ingredients": "Matcha powder, steamed milk",
+    "tags": ["earthy", "Japanese", "antioxidant-rich"],
+    "category": "Matcha",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Zesty Matcha Latte (Iced only)",
+    "key": "iced-zesty-matcha-latte",
+    "description": "Matcha latte with a hint of citrus zest for a bright, refreshing twist",
+    "ingredients": "Matcha powder, steamed milk, citrus zest",
+    "tags": ["zesty", "refreshing", "unique"],
+    "category": "Matcha",
+    "icon": "🍋🍵"
+  },
+  {
+    "name": "Hot Jasmine Matcha Latte",
+    "key": "hot-jasmine-matcha-latte",
+    "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
+    "ingredients": "Matcha powder, jasmine tea, steamed milk",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Matcha",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced Jasmine Matcha Latte",
+    "key": "iced-jasmine-matcha-latte",
+    "description": "A fragrant blend of matcha and jasmine tea with steamed milk",
+    "ingredients": "Matcha powder, jasmine tea, steamed milk",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Matcha",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Hot Tie Guan Yin",
+    "key": "iced-tie-guan-yin",
+    "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
+    "ingredients": "Tie Guan Yin tea leaves, hot water",
+    "tags": ["oolong", "floral", "premium"],
+    "category": "Loose leaf tea",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced Tie Guan Yin",
+    "key": "hot-tie-guan-yin",
+    "description": "A premium oolong tea known for its orchid-like aroma and smooth taste",
+    "ingredients": "Tie Guan Yin tea leaves, hot water",
+    "tags": ["oolong", "floral", "premium"],
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Hot Jasmine Jixuan",
+    "key": "hot-jasmine-jixuan",
+    "description": "A delicate green tea scented with jasmine flowers",
+    "ingredients": "Jasmine Jixuan tea leaves, hot water",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Loose leaf tea",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced Jasmine Jixuan",
+    "key": "iced-jasmine-jixuan",
+    "description": "A delicate green tea scented with jasmine flowers",
+    "ingredients": "Jasmine Jixuan tea leaves, hot water",
+    "tags": ["floral", "aromatic", "soothing"],
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Hot High Mountain Oolong Tea",
+    "key": "hot-high-mountain-oolong-tea",
+    "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
+    "ingredients": "High mountain oolong tea leaves, hot water",
+    "tags": ["floral", "light", "premium"],
+    "category": "Loose leaf tea",
+    "icon": "🍵"
+  },
+  {
+    "name": "Iced High Mountain Oolong Tea",
+    "key": "iced-mountain-oolong-tea",
+    "description": "A light, floral oolong tea grown at high altitudes for superior flavor",
+    "ingredients": "High mountain oolong tea leaves, hot water",
+    "tags": ["floral", "light", "premium"],
+    "category": "Loose leaf tea",
+    "icon": "🧊🍵"
+  },
+  {
+    "name": "Banana Milk",
+    "key": "banana-milk",
+    "description": "A sweet and creamy banana-flavored milk drink, perfect for kids",
+    "ingredients": "Milk, banana syrup",
+    "tags": ["sweet", "creamy", "kid-friendly"],
+    "category": "For kids",
+    "icon": "🍌🥛"
+  },
+  {
+    "name": "Strawberry Milk",
+    "key": "strawberry-milk",
+    "description": "A pink, fruity milk drink that's a favorite among children",
+    "ingredients": "Milk, strawberry syrup",
+    "tags": ["sweet", "fruity", "kid-friendly"],
+    "category": "For kids",
+    "icon": "🍓🥛"
+  },
+  {
+    "name": "Milk",
+    "key": "milk",
+    "description": "Pure, cold milk served as a refreshing and nutritious drink",
+    "ingredients": "Milk",
+    "tags": ["simple", "nutritious", "kid-friendly"],
+    "category": "For kids",
+    "icon": "🥛"
+  },
+  {
+    "name": "Steamed Milk",
+    "key": "steamed-milk",
+    "description": "Steamed milk served as a refreshing and nutritious drink with a creamy and natural sweetness",
+    "ingredients": "Milk",
+    "tags": ["simple", "nutritious", "kid-friendly"],
+    "category": "For kids",
+    "icon": "🥛"
+  },
+  {
+    "name": "Simple syrup",
+    "key": "simple-syrup",
+    "description": "Syrup made with equal parts 100% cane sugar and water, used to sweeten drinks",
+    "ingredients": "Cane sugar, water",
+    "tags": ["simple", "syrup", "sweet"],
+    "category": "syrup",
+    "icon": "🍯"
+  },
+  {
+    "name": "Vanilla syrup",
+    "key": "vanilla-syrup",
+    "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
+    "ingredients": "Black sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup",
+    "icon": "🍯"
+  },
+  {
+    "name": "Black sugar syrup",
+    "key": "black-sugar-syrup",
+    "description": "Syrup made with 2:1 ratio 100% black sugar to water, used to sweeten drinks",
+    "ingredients": "Black sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup",
+    "icon": "🍯"
+  },
+  {
+    "name": "Mixed berry syrup",
+    "key": "mixed-berry-syrup",
+    "description": "Syrup made with 5:2:1 ratio mixed berry to 100% cane sugar to water, used to sweeten drinks",
+    "ingredients": "Mixed Berry, Cane sugar, water",
+    "tags": ["syrup", "sweet"],
+    "category": "syrup",
+    "icon": "🫐🍯"
+  }
+]
+
+
+
+This code is called speed run and it essentially allows us to
+start a speed run which will select n random drinks and a timer, and allow us
+to simulate customers ordering when we finish a drink we can click complete
+once all drinks are finished we get a summary of the results.
+
+I love this but i want to add some additional functionality to it, namely
+i want us to be able to mark a drink as not completed if i accidently completed it, this likely
+means we need a more robust way to keep track of time since just keeping track of the last time wont Work
+we need to keep an array of time taken for each drink, and likely cycle through all the drinks to get the latest time.Array
+
+Secondly i want to add a feature such that i can also insert n usernames, and then when i start the speed run
+it will split the drinks between the users, meaning it needs to start a timer for each user and keep track of the time
+and a speed run will be complete when either both user's have finished all their drink or we click finish, meaning we weren't able to finish all the drinks
+and then we get a summary of the results for each user as well as a total time taken for all the drinks.
+
+I also love the feedback system, if you can make it more robust and capture more states that would be amazing
+
+
+
+also be sure to save the state to localstorage so if i accidently click out i can have my state saved
