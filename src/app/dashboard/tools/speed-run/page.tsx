@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -86,7 +87,9 @@ export default function SpeedRun() {
   };
 
   const selectRandomDrinks = (count: number): SpeedRunDrink[] => {
-    const shuffled = [...drinks].sort(() => 0.5 - Math.random());
+    // filter out syrups
+    const filteredDrinks = drinks.filter(d => !d.tags.includes('syrup'));
+    const shuffled = [...filteredDrinks].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).map(drink => ({
       drink,
       startedAt: null,
@@ -238,7 +241,11 @@ export default function SpeedRun() {
               <Card key={index}>
                 <CardContent className="flex items-center justify-between p-6">
                   <div className="flex-grow pr-4">
-                    <CardTitle>{drink.drink.name}</CardTitle>
+                    <CardTitle>
+                      <Link target="_blank" href={`/recipes/${drink.drink.key}`}>
+                        {drink.drink.name}
+                      </Link>
+                    </CardTitle>
                     <p className="text-sm text-gray-500">{drink.drink.description}</p>
                     {drink.finishedAt && (
                       <p className="text-sm font-semibold">
