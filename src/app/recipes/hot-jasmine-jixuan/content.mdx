@@ -1,89 +1,70 @@
-import { useState, useEffect } from 'react'
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+# Hot Jasmine Jixuan
 
-# How to Prepare Jasmine Jixuan at RU Coffee Bar
+Hot Jasmine Jixuan is a delicate green tea infused with the enchanting aroma of jasmine blossoms. Originating from Fujian province in China, this tea combines high-quality Jixuan green tea leaves with the fragrance of fresh jasmine flowers. The result is a soothing beverage with a sweet, floral flavor profile and a refreshing finish. Popular among tea enthusiasts, it's a staple in many specialty coffee shops, appealing to about 20% of tea orders in American cafes.
 
-A delicate green tea scented with jasmine flowers
+import RatioCalculator from '@/components/ratio-calculator.tsx';
 
-## Jasmine Jixuan Calculator
-
-export const JasmineJixuanCalculator = () => {
-  const [mainIngredient, setMainIngredient] = useState(30);
-  const [secondaryIngredient, setSecondaryIngredient] = useState(30);
-  const [totalVolume, setTotalVolume] = useState(60);
-
-  useEffect(() => {
-    setTotalVolume(mainIngredient + secondaryIngredient);
-  }, [mainIngredient, secondaryIngredient]);
-
-  const updateValues = (type, value) => {
-    switch(type) {
-      case 'main':
-        setMainIngredient(value);
-        setSecondaryIngredient(value);
-        break;
-      case 'secondary':
-        setSecondaryIngredient(value);
-        setMainIngredient(value);
-        break;
-    }
-  }
+export const Calculator = () => {
+  const jasmineJixuanRecipe = {
+    title: "Hot Jasmine Jixuan Recipe",
+    ingredients: [
+      { name: "Jasmine Jixuan leaves", value: 6, unit: "g", ratio: 1 },
+      { name: "Hot water", value: 180, unit: "ml", ratio: 30 },
+    ]
+  };
 
   return (
-    <Card className="my-4">
-      <CardHeader>
-        <CardTitle>Jasmine Jixuan Recipe Calculator</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="main-input">Main Ingredient (g):</label>
-            <Input 
-              id="main-input"
-              type="number" 
-              value={mainIngredient} 
-              onChange={(e) => updateValues('main', Number(e.target.value))}
-            />
-          </div>
-          <div>
-            <label htmlFor="secondary-input">Secondary Ingredient (g):</label>
-            <Input 
-              id="secondary-input"
-              type="number" 
-              value={secondaryIngredient} 
-              onChange={(e) => updateValues('secondary', Number(e.target.value))}
-            />
-          </div>
-        </div>
-        <p className="mt-4">Total Volume: {totalVolume}ml</p>
-      </CardContent>
-    </Card>
-  )
-}
+    <div className="container mx-auto p-4">
+      <RatioCalculator {...jasmineJixuanRecipe} />
+    </div>
+  );
+};
 
-<JasmineJixuanCalculator />
+<Calculator />
 
 ## Ingredients and Equipment
 
-- Jasmine Jixuan tea leaves, hot water
+### Ingredients:
+- Jasmine Jixuan loose leaf tea
+- Filtered water
 
-## Steps to Prepare Jasmine Jixuan
+### Equipment:
+- Electric kettle or stovetop kettle
+- Thermometer (if kettle doesn't have temperature control)
+- Teapot or Gaiwan
+- Tea cup or mug
+- Tea strainer (if not using a Gaiwan)
+- Scale for measuring tea leaves
+- Timer
 
-1. **Prepare the main ingredient**
-   - [Add specific steps here]
+## Steps to Make Hot Jasmine Jixuan
 
-2. **Prepare the secondary ingredient**
-   - [Add specific steps here]
+1. **Heat Water**: Bring water to 175°F (80°C). This lower temperature helps preserve the delicate flavors of the green tea and jasmine.
 
-3. **Combine and serve**
-   - [Add specific steps here]
+2. **Measure Tea Leaves**: Weigh 6g of Jasmine Jixuan tea leaves and place them in your teapot or Gaiwan.
 
-## Tips for the Perfect Jasmine Jixuan
+3. **Bloom the Leaves**: Pour a small amount (about 30ml) of hot water over the tea leaves to rinse and awaken them. Let it sit for 20 seconds, then discard this water.
 
-1. **Ingredient quality**: Use high-quality ingredients for the best flavor
-2. **Temperature**: Serve at the appropriate temperature for the best experience
-3. **Consistency**: Practice to maintain a consistent ratio and texture
+4. **Steep the Tea**: Pour the remaining 150ml of hot water over the tea leaves.
 
-Remember, perfecting your Jasmine Jixuan is a journey. Keep experimenting and refining your technique!
+5. **Steeping Time**: Allow the tea to steep for 2 minutes.
+
+6. **Serve**: Strain the tea into a cup if necessary and serve immediately.
+
+7. **Additional Infusions**: Jasmine Jixuan leaves can be re-steeped 2-3 times. Increase steeping time by 30 seconds for each subsequent infusion.
+
+## Troubleshooting
+
+1. **Tea is too bitter**: This may be due to water that's too hot or over-steeping. Use water at 175°F (80°C) and reduce steeping time if necessary.
+
+2. **Flavor is too weak**: Ensure you're using the correct amount of tea leaves and that the water temperature is sufficient. You can also extend the steeping time by 30 seconds.
+
+3. **Tea is cloudy**: This can happen if the water temperature is too high. Make sure the water isn't exceeding 175°F (80°C).
+
+4. **Leaves don't fully open**: This is normal for some green teas. Gently stir the leaves during steeping or extend the steeping time slightly.
+
+5. **Tea tastes flat**: Use freshly filtered water and ensure your tea leaves are stored properly to maintain freshness.
+
+6. **Astringent aftertaste**: This can result from over-steeping or using too many tea leaves. Adjust the steeping time or reduce the amount of tea leaves slightly.
+
+Remember, brewing the perfect cup may require slight adjustments based on personal taste preferences and the specific characteristics of the tea batch.
